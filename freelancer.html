@@ -14,19 +14,20 @@
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="theme-color" content="#2c5cf6">
+<meta name="theme-color" content="#2f7a58">
 <link rel="manifest" href="manifest.webmanifest">
 <link rel="icon" href="assets/icon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="assets/icon.svg">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;600;700;800&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Gowun+Dodum&family=Noto+Sans+KR:wght@400;500;600;700;800&display=swap">
 <link rel="stylesheet" href="assets/style.css">
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2484423746725349" crossorigin="anonymous"></script>
+<script src="assets/partners.js" defer></script>
 <script src="assets/common.js" defer></script>
 </head>
 <body>
 <main class="wrap">
   <h1>3.3% 프리랜서 세금 계산기</h1>
-  <p class="lead">사업소득 원천징수(소득세 3% + 지방소득세 0.3%)를 계산합니다.</p>
+  <p class="lead">3.3%를 떼고 받은 돈이 얼마인지, 내년 5월에 얼마를 돌려받을 수 있을지 한 번에 볼 수 있어요.</p>
 
   <div class="card">
     <div class="seg" id="mode"><button type="button" class="on" data-m="gross">세전 → 세후</button><button type="button" data-m="net">세후 → 세전</button></div>
@@ -41,7 +42,7 @@
     <div class="label" id="resLabel">실제 입금액</div>
     <div class="big" id="res">-</div>
     <div class="sub" id="resSub"></div>
-    <div class="actions"><button type="button" id="share">📤 결과 공유</button></div>
+    <div class="actions"><button type="button" id="share" data-icon="share">결과 공유하기</button></div>
   </div>
   <div class="card"><table class="breakdown" id="breakdown"></table></div>
 
@@ -69,6 +70,8 @@
     <table class="breakdown" id="yearBreakdown"></table>
     <p id="verdict" style="font-weight:800;font-size:18px;margin:14px 0 0"></p>
   </div>
+
+  <section class="partners" data-slot="freelancer" hidden></section>
 
   <div class="card content">
     <h2>3.3% 세금, 이렇게 계산됩니다</h2>

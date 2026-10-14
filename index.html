@@ -15,63 +15,71 @@
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="theme-color" content="#2c5cf6">
+<meta name="theme-color" content="#2f7a58">
 <link rel="manifest" href="manifest.webmanifest">
 <link rel="icon" href="assets/icon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="assets/icon.svg">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;600;700;800&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Gowun+Dodum&family=Noto+Sans+KR:wght@400;500;600;700;800&display=swap">
 <link rel="stylesheet" href="assets/style.css">
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2484423746725349" crossorigin="anonymous"></script>
+<script src="assets/partners.js" defer></script>
 <script src="assets/common.js" defer></script>
 </head>
 <body>
 <main class="wrap">
-  <h1>세금 계산, 세금 도우미에서 한 번에</h1>
-  <p class="lead">직장인, 프리랜서, 사장님 모두를 위한 2026년 기준 무료 세금 계산기입니다. 입력하는 즉시 결과가 나오고, 휴대폰 홈 화면에 앱처럼 추가할 수도 있어요.</p>
+  <section class="hero">
+    <h1>월급날 통장에 찍힐 돈,<br>미리 알아볼까요?</h1>
+    <p class="lead">연봉, 프리랜서 3.3%, 사장님 종합소득세와 부가세까지. 숫자만 넣으면 계산 과정까지 한 줄씩 보여드려요. 가입이나 설치는 필요 없어요.</p>
+  </section>
 
-  <div class="card" style="margin-bottom:20px">
+  <div class="card">
     <div class="field" style="margin:0">
-      <label for="quick">연봉을 입력하면 바로 월 실수령액을 알려드려요</label>
+      <label for="quick">연봉부터 넣어보세요</label>
       <div class="input"><input id="quick" inputmode="numeric" placeholder="예: 40,000,000"><span>원</span></div>
       <div class="korean" data-korean-for="quick"></div>
     </div>
-    <p id="quickRes" style="font-size:20px;font-weight:800;margin:10px 0 0"></p>
+    <p id="quickRes" style="margin:10px 0 0;font-weight:700"></p>
   </div>
 
-  <div class="section-title">직장인 · 프리랜서</div>
+  <h2 class="section-title">직장인·프리랜서라면</h2>
   <div class="tools">
-    <a class="tool" href="salary.html"><div class="ic">💼</div><b>연봉 실수령액<span class="tag">인기</span></b><span>4대보험·소득세 공제 후 월급</span></a>
-    <a class="tool" href="freelancer.html"><div class="ic">🧾</div><b>3.3% 프리랜서 세금</b><span>세후 금액, 종합소득세 환급 예상</span></a>
-    <a class="tool" href="hourly.html"><div class="ic">⏰</div><b>시급 · 주휴수당</b><span>알바 주급·월급 계산</span></a>
-    <a class="tool" href="salary-4000.html"><div class="ic">📊</div><b>연봉별 실수령액 표</b><span>2천만~1.5억, 구간별 월급 한눈에</span></a>
-    <a class="tool" href="severance.html"><div class="ic">📦</div><b>퇴직금</b><span>평균임금으로 법정 퇴직금 계산</span></a>
+    <a class="tool" href="salary.html"><div class="ic" data-icon="wallet"></div><div><b>연봉 실수령액</b><span>4대보험과 세금을 빼고 남는 월급</span></div></a>
+    <a class="tool" href="salary-4000.html"><div class="ic" data-icon="table"></div><div><b>연봉별 실수령액 표</b><span>2천만부터 1.5억까지 구간별로</span></div></a>
+    <a class="tool" href="freelancer.html"><div class="ic" data-icon="receipt"></div><div><b>3.3% 프리랜서 세금</b><span>세후 금액과 5월 환급 예상</span></div></a>
+    <a class="tool" href="hourly.html"><div class="ic" data-icon="clock"></div><div><b>시급·주휴수당</b><span>알바 주급, 월급 계산</span></div></a>
+    <a class="tool" href="severance.html"><div class="ic" data-icon="gift"></div><div><b>퇴직금</b><span>입사일·퇴사일과 3개월 급여로</span></div></a>
   </div>
 
-  <div class="section-title">소상공인 · 자영업자</div>
+  <h2 class="section-title">사장님이라면</h2>
   <div class="tools">
-    <a class="tool" href="business-tax.html"><div class="ic">🏪</div><b>자영업자 종합소득세<span class="tag">NEW</span></b><span>매출·경비로 5월 세금과 절세액 계산</span></a>
-    <a class="tool" href="vat-pay.html"><div class="ic">🧮</div><b>부가세 납부세액<span class="tag">NEW</span></b><span>일반·간이과세자, 카드매출 공제 반영</span></a>
-    <a class="tool" href="guide.html"><div class="ic">📅</div><b>사장님 세금 가이드</b><span>신고 일정 D-day와 절세 방법</span></a>
-    <a class="tool" href="vat.html"><div class="ic">🏷️</div><b>부가세 10% 계산</b><span>공급가액 ↔ 합계금액</span></a>
+    <a class="tool" href="business-tax.html"><div class="ic" data-icon="store"></div><div><b>종합소득세</b><span>매출과 경비로 5월 세금 미리 보기</span></div></a>
+    <a class="tool" href="vat-pay.html"><div class="ic" data-icon="calc"></div><div><b>부가세 납부세액</b><span>일반과세자, 간이과세자 모두</span></div></a>
+    <a class="tool" href="vat.html"><div class="ic" data-icon="tag"></div><div><b>부가세 10% 계산</b><span>공급가액과 합계금액 바꿔 보기</span></div></a>
+    <a class="tool" href="guide.html"><div class="ic" data-icon="calendar"></div><div><b>사장님 세금 가이드</b><span>1년 신고 일정과 절세 방법</span></div></a>
   </div>
 
   <div class="card">
     <h2>다가오는 사업자 세금 일정</h2>
     <div id="deadlines"></div>
-    <p class="note" style="margin-bottom:0"><a href="guide.html">전체 일정과 절세 방법 보기 →</a></p>
+    <p class="note" style="margin-bottom:0"><a href="guide.html">1년 일정 전체 보기</a></p>
+  </div>
+
+  <div class="note-card">
+    <b>운영자 한마디</b>
+    <p>계산기를 쓰다 보면 숫자는 나오는데 왜 그렇게 나왔는지 알 수 없어서 답답할 때가 많죠. 그래서 여기서는 공제 항목을 하나씩 풀어서 보여드리고 있어요. 계산이 이상하거나 있었으면 하는 계산기가 있다면 <a href="contact.html">문의 페이지</a>로 편하게 알려주세요.</p>
   </div>
 
   <div class="ad"></div>
 
   <div class="card content">
-    <h2>2026년, 무엇이 바뀌었나요?</h2>
+    <h2>올해 바뀐 것들 (2026년)</h2>
     <ul>
-      <li><b>국민연금 보험료율 인상</b>: 연금개혁으로 9%에서 9.5%로 올랐습니다(근로자 4.75%). 2033년까지 매년 0.5%p씩 올라 13%가 됩니다.</li>
-      <li><b>건강보험료율 인상</b>: 7.09%에서 7.19%로 올랐습니다(근로자 3.595%).</li>
-      <li><b>최저시급 10,320원</b>: 주 40시간 기준 월 2,156,880원입니다.</li>
-      <li><b>국민연금 기준소득월액 상한</b>: 2026년 7월부터 659만원으로 올랐습니다.</li>
+      <li><b>국민연금이 9%에서 9.5%로</b> 올랐어요. 근로자는 그 절반인 4.75%를 내고, 2033년까지 해마다 0.5%p씩 더 올라요.</li>
+      <li><b>건강보험료율</b>은 7.09%에서 7.19%가 됐어요. 근로자 몫은 3.595%예요.</li>
+      <li><b>최저시급은 10,320원</b>이에요. 주 40시간이면 한 달 2,156,880원이에요.</li>
+      <li>7월부터 <b>국민연금을 매기는 월 소득 상한</b>이 659만원으로 올랐어요.</li>
     </ul>
-    <p class="note">모든 계산 결과는 참고용 추정치입니다. 실제 급여 명세서나 세금은 회사의 계산 방식과 개인의 공제 항목에 따라 달라질 수 있습니다.</p>
+    <p class="note">여기 나오는 금액은 모두 추정치예요. 회사마다 쓰는 계산 방식이나 개인 공제 항목에 따라 몇천 원씩 차이가 날 수 있어요.</p>
   </div>
   <div class="ad"></div>
 </main>
@@ -82,7 +90,7 @@ const q = document.getElementById("quick"), out = document.getElementById("quick
 moneyInput(q);
 q.addEventListener("input", () => {
   const n = parseNum(q.value);
-  out.innerHTML = n >= 1e6 ? `<a href="salary.html?salary=${n}">월 실수령액 자세히 보기 →</a>` : "";
+  out.innerHTML = n >= 1e6 ? `<a href="salary.html?salary=${n}">이 연봉의 월 실수령액 보러 가기 →</a>` : "";
 });
 q.addEventListener("keydown", (e) => { if (e.key === "Enter" && parseNum(q.value)) location.href = `salary.html?salary=${parseNum(q.value)}`; });
 </script>

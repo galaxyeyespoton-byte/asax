@@ -15,19 +15,20 @@
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="theme-color" content="#2c5cf6">
+<meta name="theme-color" content="#2f7a58">
 <link rel="manifest" href="manifest.webmanifest">
 <link rel="icon" href="assets/icon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="assets/icon.svg">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;600;700;800&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Gowun+Dodum&family=Noto+Sans+KR:wght@400;500;600;700;800&display=swap">
 <link rel="stylesheet" href="assets/style.css">
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2484423746725349" crossorigin="anonymous"></script>
+<script src="assets/partners.js" defer></script>
 <script src="assets/common.js" defer></script>
 </head>
 <body>
 <main class="wrap">
   <h1>사장님 세금 가이드</h1>
-  <p class="lead">소상공인·자영업자가 1년 동안 챙겨야 할 세금을 한 페이지에 정리했습니다.</p>
+  <p class="lead">사장님이 1년 동안 챙겨야 할 세금 일정과 놓치기 쉬운 절세 방법을 한곳에 모았어요.</p>
 
   <div class="card">
     <h2>다가오는 신고 일정</h2>
@@ -35,11 +36,11 @@
     <p class="note">마감일이 주말이면 다음 월요일로 미뤄 표시합니다. 공휴일은 반영하지 않았으니 홈택스에서 한 번 더 확인하세요.</p>
   </div>
 
-  <div class="section-title">바로 계산하기</div>
+  <h2 class="section-title">바로 계산해 보기</h2>
   <div class="tools">
-    <a class="tool" href="business-tax.html"><div class="ic">🏪</div><b>종합소득세</b><span>매출·경비로 5월 세금 계산</span></a>
-    <a class="tool" href="vat-pay.html"><div class="ic">🧮</div><b>부가세 납부세액</b><span>일반·간이과세자 모두</span></a>
-    <a class="tool" href="hourly.html"><div class="ic">👥</div><b>직원 시급·주휴수당</b><span>알바 인건비 계산</span></a>
+    <a class="tool" href="business-tax.html"><div class="ic" data-icon="store"></div><div><b>종합소득세</b><span>매출·경비로 5월 세금 계산</span></div></a>
+    <a class="tool" href="vat-pay.html"><div class="ic" data-icon="calc"></div><div><b>부가세 납부세액</b><span>일반·간이과세자 모두</span></div></a>
+    <a class="tool" href="hourly.html"><div class="ic" data-icon="clock"></div><div><b>직원 시급·주휴수당</b><span>알바 인건비 계산</span></div></a>
   </div>
 
   <div class="ad"></div>
@@ -80,19 +81,21 @@
 
   <div class="card content">
     <h2>4. 놓치기 쉬운 절세 방법</h2>
-    <h3>✔ 사업용 카드를 홈택스에 등록</h3>
+    <h3>사업용 카드를 홈택스에 등록</h3>
     <p>사업에 쓰는 신용카드를 홈택스에 등록하면 사용 내역이 자동으로 모여 부가세 매입세액공제와 경비 처리가 쉬워집니다.</p>
-    <h3>✔ 증빙은 꼭 챙기기</h3>
+    <h3>증빙은 꼭 챙기기</h3>
     <p>세금계산서, 카드전표, 지출증빙용 현금영수증이 있어야 경비와 매입세액으로 인정됩니다. 3만원 넘는 지출을 간이영수증으로 처리하면 증빙불비 가산세(2%)가 붙을 수 있습니다.</p>
-    <h3>✔ 노란우산공제 가입</h3>
+    <h3>노란우산공제 가입</h3>
     <p>소기업·소상공인 공제로, 납입액을 사업소득금액에 따라 연 200만~600만원까지 소득공제받습니다. 폐업이나 노령 때 목돈으로 돌려받는 퇴직금 역할도 합니다. → <a href="business-tax.html">얼마나 줄어드는지 계산하기</a></p>
-    <h3>✔ 장부 쓰기</h3>
+    <h3>장부 쓰기</h3>
     <p>장부를 쓰면 실제 경비로 신고할 수 있고, 적자가 나면 다음 해로 이월해 세금을 줄일 수 있습니다. 간편장부 대상자가 복식부기로 신고하면 기장세액공제(산출세액의 20%, 최대 100만원)도 받습니다.</p>
-    <h3>✔ 창업 감면 확인</h3>
+    <h3>창업 감면 확인</h3>
     <p>청년 창업자나 수도권 밖에서 창업한 중소기업은 창업중소기업 세액감면으로 최대 5년간 소득세를 50~100% 감면받을 수 있습니다. 업종과 지역 요건이 있으니 창업 직후 꼭 확인하세요.</p>
-    <h3>✔ 가족 인건비</h3>
+    <h3>가족 인건비</h3>
     <p>실제로 일하는 가족에게 급여를 주고 원천세 신고와 4대보험 가입을 하면 인건비로 경비 처리할 수 있습니다. 일하지 않는 가족 명의 인건비는 가산세 대상입니다.</p>
   </div>
+
+  <section class="partners" data-slot="guide" hidden></section>
 
   <div class="card content">
     <h2>5. 도움받을 곳</h2>

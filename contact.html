@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>문의·제휴 | 세금 도우미</title>
+<meta name="description" content="세금 도우미 계산 오류 제보, 기능 제안, 광고·제휴 문의 안내입니다.">
+<link rel="canonical" href="https://galaxyeyespoton-byte.github.io/asax/contact.html">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="세금 도우미">
+<meta property="og:title" content="문의·제휴 | 세금 도우미">
+<meta property="og:description" content="세금 도우미 계산 오류 제보, 기능 제안, 광고·제휴 문의 안내입니다.">
+<meta property="og:url" content="https://galaxyeyespoton-byte.github.io/asax/contact.html">
+<meta property="og:image" content="https://galaxyeyespoton-byte.github.io/asax/assets/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#2f7a58">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="assets/icon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="assets/icon.svg">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Gowun+Dodum&family=Noto+Sans+KR:wght@400;500;600;700;800&display=swap">
+<link rel="stylesheet" href="assets/style.css">
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2484423746725349" crossorigin="anonymous"></script>
+<script src="assets/partners.js" defer></script>
+<script src="assets/common.js" defer></script>
+</head>
+<body>
+<main class="wrap">
+  <h1>문의·제휴</h1>
+  <p class="lead">계산이 이상하거나, 이런 계산기가 있었으면 좋겠다 싶을 때 편하게 연락 주세요.</p>
+
+  <div class="card">
+    <h2>메일로 연락하기</h2>
+    <p id="mailBox" class="note">문의 메일 주소를 준비하고 있어요.</p>
+    <p class="note">보통 2~3일 안에 답장드려요. 개인 세무 상담(내 세금이 정확히 얼마인지 등)은 답변드리기 어려워요. 이런 질문은 국세청 상담센터(126)를 이용해 주세요.</p>
+  </div>
+
+  <div class="card content">
+    <h2>이런 내용을 보내주시면 좋아요</h2>
+    <h3>계산 오류 제보</h3>
+    <p>어느 계산기에서, 어떤 숫자를 넣었을 때, 어떤 결과가 나왔고 실제로는 얼마였는지 알려주시면 빨리 찾을 수 있어요. 급여명세서 금액과 비교해 주시면 특히 도움이 돼요.</p>
+    <h3>기능 제안</h3>
+    <p>연말정산, 양도소득세, 4대보험 사업주 부담분처럼 추가됐으면 하는 계산기가 있으면 알려주세요.</p>
+    <h3>광고·제휴 제안</h3>
+    <p>세무·회계 서비스, 사업자 금융, 급여·인사 관리 서비스처럼 이 사이트를 찾는 직장인·프리랜서·사장님께 실제로 도움이 되는 서비스라면 제휴를 환영해요.</p>
+    <ul>
+      <li>계산 결과 아래 "함께 보면 좋은 서비스" 영역 노출</li>
+      <li>세금 가이드 안의 관련 서비스 소개</li>
+      <li>시즌(5월 종합소득세, 1월·7월 부가세) 집중 노출</li>
+    </ul>
+    <p class="note">제휴 링크와 광고에는 항상 "제휴" 표시를 달고, 이용자에게 불리한 상품(고금리 대출 등)은 싣지 않아요.</p>
+  </div>
+</main>
+
+<script type="module">
+const box = document.getElementById("mailBox");
+if (CONTACT_EMAIL) box.innerHTML = `<a href="mailto:${CONTACT_EMAIL}" style="font-size:18px;font-weight:700">${CONTACT_EMAIL}</a>`;
+</script>
+</body>
+</html>

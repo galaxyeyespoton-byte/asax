@@ -15,19 +15,20 @@
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="theme-color" content="#2c5cf6">
+<meta name="theme-color" content="#2f7a58">
 <link rel="manifest" href="manifest.webmanifest">
 <link rel="icon" href="assets/icon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="assets/icon.svg">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;600;700;800&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Gowun+Dodum&family=Noto+Sans+KR:wght@400;500;600;700;800&display=swap">
 <link rel="stylesheet" href="assets/style.css">
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2484423746725349" crossorigin="anonymous"></script>
+<script src="assets/partners.js" defer></script>
 <script src="assets/common.js" defer></script>
 </head>
 <body>
 <main class="wrap">
   <h1>부가세 납부세액 계산기</h1>
-  <p class="lead">사장님이 이번 신고 때 낼 부가가치세를 미리 계산해 봅니다.</p>
+  <p class="lead">이번 신고 때 낼 부가세가 얼마쯤일지 미리 계산해 봐요. 간이과세자라면 위에서 탭을 바꿔주세요.</p>
 
   <div class="card">
     <div class="seg" id="mode"><button type="button" class="on" data-m="general">일반과세자</button><button type="button" data-m="simple">간이과세자</button></div>
@@ -69,10 +70,12 @@
     <div class="label" id="resLabel">납부할 부가세</div>
     <div class="big" id="res">-</div>
     <div class="sub" id="resSub"></div>
-    <div class="actions"><button type="button" id="share">📤 결과 공유</button></div>
+    <div class="actions"><button type="button" id="share" data-icon="share">결과 공유하기</button></div>
   </div>
   <div class="card"><h2>계산 과정</h2><table class="breakdown" id="breakdown"></table><p class="note" id="extra"></p></div>
   <div class="ad"></div>
+
+  <section class="partners" data-slot="vat" hidden></section>
 
   <div class="card content">
     <h2>일반과세자 vs 간이과세자</h2>

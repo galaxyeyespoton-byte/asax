@@ -99,18 +99,54 @@ async function shareResult(text) {
   catch (e) { toast("복사할 수 없어요. 주소창의 링크를 공유해 주세요"); }
 }
 
-// ── 공통 레이아웃 ──────────────────────────────────────────
-const PAGES = [
-  ["index.html", "홈"],
-  ["salary.html", "연봉 실수령액"],
-  ["freelancer.html", "3.3% 프리랜서"],
-  ["business-tax.html", "자영업자 종소세"],
-  ["vat-pay.html", "부가세 납부"],
-  ["guide.html", "사장님 세금 가이드"],
-  ["hourly.html", "시급·주휴수당"],
-  ["severance.html", "퇴직금"],
-  ["vat.html", "부가세 계산"],
+// ── 운영 정보 ───────────────────────────────────────────────
+// 문의·제휴 메일. 비워두면 문의 페이지에 "준비 중"으로 표시됩니다.
+const CONTACT_EMAIL = "";
+
+// ── 메뉴 (그룹별) ────────────────────────────────────────────
+const MENU = [
+  { title: "직장인·프리랜서", items: [
+    ["salary.html", "연봉 실수령액", "4대보험·세금 빼고 남는 월급", "wallet"],
+    ["salary-4000.html", "연봉별 실수령액 표", "2천만~1.5억 구간별 정리", "table"],
+    ["freelancer.html", "3.3% 프리랜서 세금", "세후 금액, 5월 환급 예상", "receipt"],
+    ["hourly.html", "시급·주휴수당", "알바 주급·월급 계산", "clock"],
+    ["severance.html", "퇴직금", "평균임금으로 계산", "gift"],
+  ]},
+  { title: "사장님", items: [
+    ["business-tax.html", "종합소득세", "매출·경비로 5월 세금 미리 보기", "store"],
+    ["vat-pay.html", "부가세 납부세액", "일반·간이과세자 모두", "calc"],
+    ["vat.html", "부가세 10% 계산", "공급가액 ↔ 합계금액", "tag"],
+    ["guide.html", "사장님 세금 가이드", "신고 일정과 절세 방법", "calendar"],
+  ]},
+  { title: "도움말", items: [
+    ["about.html", "만든 이야기", "이 사이트를 만든 이유와 업데이트 기록", "leaf"],
+    ["contact.html", "문의·제휴", "틀린 곳 제보, 제휴 제안", "mail"],
+  ]},
 ];
+
+// 둥근 선 아이콘 (24×24)
+const ICONS = {
+  wallet: '<path d="M4 7.5A2.5 2.5 0 0 1 6.5 5H18v3"/><rect x="4" y="8" width="16" height="11" rx="2.5"/><circle cx="16" cy="13.5" r="1.2"/>',
+  table: '<rect x="4" y="5" width="16" height="14" rx="2.5"/><path d="M4 10h16M10 10v9"/>',
+  receipt: '<path d="M6 4h12v16l-2.5-1.5L13 20l-2.5-1.5L8 20l-2-1.5z" transform="translate(0 -1)"/><path d="M9 8.5h6M9 12h6"/>',
+  clock: '<circle cx="12" cy="12" r="8"/><path d="M12 8v4.5l3 2"/>',
+  gift: '<rect x="4.5" y="9" width="15" height="10" rx="2"/><path d="M3.5 9h17M12 9v10M12 9c-1.5-3-5-3.2-5-1s3 1 5 1c2 0 5 1.2 5-1s-3.5-2-5 1"/>',
+  store: '<path d="M4.5 10v8.5h15V10"/><path d="M3.5 6l1.5-2h14l1.5 2v2a2.5 2.5 0 0 1-5 0 2.5 2.5 0 0 1-5 0 2.5 2.5 0 0 1-5 0z"/><path d="M10 18.5v-4h4v4"/>',
+  calc: '<rect x="5.5" y="3.5" width="13" height="17" rx="2.5"/><path d="M8.5 7.5h7M9 12h.01M12 12h.01M15 12h.01M9 15.5h.01M12 15.5h.01M15 15.5h.01"/>',
+  tag: '<path d="M4 12.5V5.5A1.5 1.5 0 0 1 5.5 4h7l7.5 7.5-8 8z"/><circle cx="8.5" cy="8.5" r="1.3"/>',
+  calendar: '<rect x="4" y="5.5" width="16" height="14" rx="2.5"/><path d="M4 10h16M8.5 3.5v4M15.5 3.5v4"/>',
+  leaf: '<path d="M5 19c0-8 5-13 14-14-1 9-6 14-14 14z"/><path d="M5 19l7-7"/>',
+  mail: '<rect x="3.5" y="5.5" width="17" height="13" rx="2.5"/><path d="M4 7l8 6 8-6"/>',
+  share: '<circle cx="17" cy="6" r="2.3"/><circle cx="7" cy="12" r="2.3"/><circle cx="17" cy="18" r="2.3"/><path d="M9 11l6-3.5M9 13l6 3.5"/>',
+  copy: '<rect x="8" y="8" width="11" height="11" rx="2.2"/><path d="M5 15V6.5A1.5 1.5 0 0 1 6.5 5H15"/>',
+  menu: '<path d="M4.5 7h15M4.5 12h15M4.5 17h15"/>',
+  moon: '<path d="M19 14.5A7.5 7.5 0 0 1 9.5 5a7.5 7.5 0 1 0 9.5 9.5z"/>',
+};
+const icon = (name) => `<svg class="icon" viewBox="0 0 24 24" aria-hidden="true">${ICONS[name] || ""}</svg>`;
+// data-icon="wallet" 처럼 써두면 아이콘으로 채웁니다.
+function fillIcons(root = document) {
+  root.querySelectorAll("[data-icon]").forEach((el) => { if (!el.querySelector("svg")) el.insertAdjacentHTML("afterbegin", icon(el.dataset.icon)); });
+}
 
 // ── 개인사업자 세금 신고 일정 (매년 반복, 월은 1부터) ─────────
 // 마감일이 토·일이면 다음 월요일로 미룹니다. 공휴일은 반영하지 않습니다.
@@ -147,21 +183,33 @@ function renderDeadlines(el, count) {
 }
 function renderChrome() {
   const here = location.pathname.split("/").pop() || "index.html";
+  const links = (items) => items.map(([h, t, d, ic]) =>
+    `<a href="${h}" class="${h === here ? "on" : ""}">${icon(ic)}<span>${t}<small>${d}</small></span></a>`).join("");
+  const desktop = MENU.map((g) =>
+    `<details class="menu-desktop${g.items.some(([h]) => h === here) ? " here" : ""}"><summary>${g.title}</summary><div class="pop">${links(g.items)}</div></details>`).join("");
+  const mobile = `<details class="menu-mobile"><summary aria-label="메뉴 열기">${icon("menu")}</summary><div class="pop">${
+    MENU.map((g) => `<div class="group-title">${g.title}</div>${links(g.items)}`).join("")}</div></details>`;
+
   const top = document.createElement("header");
   top.className = "top";
-  top.innerHTML = `<div class="wrap"><a class="brand" href="index.html"><i>₩</i>세금 도우미</a>
-    <button class="theme-btn" type="button" aria-label="화면 테마 바꾸기">🌓</button></div>`;
-  const nav = document.createElement("nav");
-  nav.className = "nav";
-  nav.innerHTML = `<div class="wrap">${PAGES.map(([h, t]) => `<a href="${h}" class="${h === here ? "on" : ""}">${t}</a>`).join("")}</div>`;
-  document.body.prepend(nav);
+  top.innerHTML = `<div class="wrap">
+    <a class="brand" href="index.html"><img src="assets/icon.svg" alt="" width="30" height="30">세금 도우미</a>
+    <nav class="menu" aria-label="전체 메뉴">${desktop}${mobile}</nav>
+    <button class="theme-btn" type="button" aria-label="밝게/어둡게 바꾸기">${icon("moon")}</button></div>`;
   document.body.prepend(top);
-  const on = nav.querySelector(".on"); if (on) on.scrollIntoView({ inline: "center", block: "nearest" });
+
+  // 메뉴는 한 번에 하나만, 바깥을 누르면 닫기
+  const all = [...top.querySelectorAll(".menu details")];
+  all.forEach((d) => d.addEventListener("toggle", () => { if (d.open) all.forEach((o) => o !== d && (o.open = false)); }));
+  document.addEventListener("click", (e) => { if (!top.contains(e.target)) all.forEach((d) => (d.open = false)); });
+  document.addEventListener("keydown", (e) => { if (e.key === "Escape") all.forEach((d) => (d.open = false)); });
 
   const foot = document.createElement("footer");
-  foot.innerHTML = `<div>${RATES.year}년 기준 요율로 계산한 추정치입니다. 실제 금액은 회사·개인 상황에 따라 다를 수 있습니다.</div>
-    <div style="margin-top:8px"><a href="about.html">소개</a>·<a href="privacy.html">개인정보처리방침</a></div>
-    <div style="margin-top:8px">© 세금 도우미</div>`;
+  foot.innerHTML = `<div class="wrap">
+    <div class="brandline">세금 도우미</div>
+    <div>숫자만 넣으면 세금이 보이는 작은 계산기 모음입니다. ${RATES.year}년 기준 요율로 계산한 추정치라, 실제 금액은 회사나 개인 상황에 따라 조금 다를 수 있어요.</div>
+    <nav><a href="about.html">만든 이야기</a><a href="contact.html">문의·제휴</a><a href="terms.html">이용약관</a><a href="privacy.html">개인정보처리방침</a></nav>
+    <div>© ${new Date().getFullYear()} 세금 도우미</div></div>`;
   document.body.appendChild(foot);
 
   // 테마
@@ -176,6 +224,23 @@ function renderChrome() {
   });
 }
 
+// ── 제휴 영역 ───────────────────────────────────────────────
+// <section class="partners" data-slot="business"></section> 자리에, assets/partners.js에서
+// 링크(url)가 채워진 항목만 보여줍니다. 링크가 하나도 없으면 영역 자체가 숨겨집니다.
+function renderPartners() {
+  const list = typeof PARTNERS === "undefined" ? [] : PARTNERS;
+  document.querySelectorAll(".partners[data-slot]").forEach((box) => {
+    const items = list.filter((p) => p.url && p.slots.includes(box.dataset.slot));
+    if (!items.length) { box.hidden = true; return; }
+    box.hidden = false;
+    box.classList.add("card");
+    box.innerHTML = `<h2>함께 보면 좋은 서비스 <span class="badge">제휴</span></h2>` +
+      items.map((p) => `<a class="partner" href="${p.url}" target="_blank" rel="sponsored noopener">
+        <div><b>${p.title}</b><span>${p.desc}</span></div><span class="go">${p.cta || "보러 가기"} →</span></a>`).join("") +
+      `<p class="disclosure">${[...new Set(items.map((p) => p.disclosure || PARTNER_DISCLOSURE))].join(" ")}</p>`;
+  });
+}
+
 function renderAds() {
   document.querySelectorAll(".ad").forEach((box) => {
     if (!AD_SLOT) return;
@@ -187,6 +252,8 @@ function renderAds() {
 
 document.addEventListener("DOMContentLoaded", () => {
   renderChrome();
+  fillIcons();
+  renderPartners();
   renderAds();
   if ("serviceWorker" in navigator) navigator.serviceWorker.register("sw.js").catch(() => {});
 });

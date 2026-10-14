@@ -56,13 +56,13 @@ function page(m, i) {
 
   return pageHead(title, desc, file) + `<main class="wrap">
   <h1>연봉 ${label(m)}원 실수령액 (2026년)</h1>
-  <p class="lead">2026년 4대보험 요율과 소득세를 반영한 연봉 ${label(m)}원의 실제 월급입니다.</p>
+  <p class="lead">연봉 ${label(m)}원이면 한 달에 실제로 얼마를 받는지, 무엇이 얼마씩 빠지는지 정리했어요. 2026년 요율 기준이에요.</p>
 
   <div class="card result">
     <div class="label">월 실수령액</div>
     <div class="big">${n(r.net)}원</div>
     <div class="sub">세전 월 ${n(r.monthly)}원 · 연 실수령 약 ${koreanMoney(Math.round(r.net * 12 / 1e4) * 1e4)} · 공제율 ${(r.deductions / r.monthly * 100).toFixed(1)}%</div>
-    <div class="actions"><button type="button" id="share">📤 결과 공유</button></div>
+    <div class="actions"><button type="button" id="share" data-icon="share">결과 공유하기</button></div>
   </div>
 
   <div class="card">
@@ -104,6 +104,8 @@ function page(m, i) {
     </p>
   </div>
 
+  <section class="partners" data-slot="salary" hidden></section>
+
   <div class="ad"></div>
 
   <div class="card content">
@@ -124,7 +126,7 @@ AMOUNTS.forEach((m, i) => fs.writeFileSync(path.join(ROOT, `salary-${m}.html`), 
 
 // sitemap: 고정 페이지 + 연봉별 페이지
 const today = new Date().toISOString().slice(0, 10);
-const fixed = ["", "salary.html", "freelancer.html", "business-tax.html", "vat-pay.html", "guide.html", "hourly.html", "severance.html", "vat.html", "about.html", "privacy.html"];
+const fixed = ["", "salary.html", "freelancer.html", "business-tax.html", "vat-pay.html", "guide.html", "hourly.html", "severance.html", "vat.html", "about.html", "contact.html", "terms.html", "privacy.html"];
 const urls = [...fixed, ...AMOUNTS.map((m) => `salary-${m}.html`)];
 fs.writeFileSync(path.join(ROOT, "sitemap.xml"),
   `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n` +

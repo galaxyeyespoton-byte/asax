@@ -20,10 +20,14 @@ tools/set-domain.sh 내도메인.kr
 ### 연봉별 페이지
 `salary-XXXX.html`(31개)과 `sitemap.xml`은 `node tools/gen-salary-pages.mjs`로 만듭니다. 요율을 바꾼 뒤 다시 실행하세요.
 
-### 홍보
-방문자를 늘리는 방법(검색 등록, 시즌 전략, 커뮤니티 문구, 블로그 초안)은 `marketing/PROMOTION.md`에 있습니다.
+### 홍보·AdSense·제휴
+AdSense 심사 준비 상태와 제휴 링크 넣는 방법은 `marketing/ADSENSE_PARTNERS.md`, 방문자를 늘리는 방법(검색 등록, 시즌 전략, 커뮤니티 문구, 블로그 초안)은 `marketing/PROMOTION.md`에 있습니다.
 
 이전에 만든 홈페이지 제작 외주 키트는 `kmong-kit/` 폴더로 옮겼습니다.
+
+## 운영 설정
+- 문의 이메일: `assets/common.js`의 `CONTACT_EMAIL`
+- 제휴 링크: `assets/partners.js`
 
 ## 광고 (Google AdSense)
 - 모든 페이지 `<head>`와 `ads.txt`에 게시자 ID `ca-pub-2484423746725349`가 들어 있습니다. 본인 ID가 아니면 전체 찾아 바꾸기로 교체하세요.
