@@ -10,7 +10,7 @@ const BASE = fs.readFileSync(path.join(ROOT, "tools/site-url.txt"), "utf8").trim
 const read = (f) => fs.readFileSync(path.join(ROOT, f), "utf8");
 
 // 브라우저용 계산 코드를 그대로 불러와 같은 결과를 보장
-const ctx = { document: { addEventListener() {} }, console };
+const ctx = { document: { addEventListener() {} }, window: { addEventListener() {} }, navigator: {}, matchMedia: () => ({ matches: false }), console };
 vm.createContext(ctx);
 vm.runInContext(read("assets/common.js") + "\n" + read("assets/salary-calc.js") +
   "\nthis.calcSalary = calcSalary; this.koreanMoney = koreanMoney; this.marginalRate = marginalRate; this.RATES = RATES;", ctx);
@@ -126,7 +126,7 @@ AMOUNTS.forEach((m, i) => fs.writeFileSync(path.join(ROOT, `salary-${m}.html`), 
 
 // sitemap: 고정 페이지 + 연봉별 페이지
 const today = new Date().toISOString().slice(0, 10);
-const fixed = ["", "salary.html", "freelancer.html", "business-tax.html", "vat-pay.html", "guide.html", "hourly.html", "severance.html", "vat.html", "about.html", "contact.html", "terms.html", "privacy.html"];
+const fixed = ["", "salary.html", "freelancer.html", "business-tax.html", "vat-pay.html", "guide.html", "hourly.html", "severance.html", "vat.html", "about.html", "app.html", "contact.html", "terms.html", "privacy.html"];
 const urls = [...fixed, ...AMOUNTS.map((m) => `salary-${m}.html`)];
 fs.writeFileSync(path.join(ROOT, "sitemap.xml"),
   `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n` +

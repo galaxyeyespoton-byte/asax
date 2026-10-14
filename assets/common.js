@@ -120,6 +120,7 @@ const MENU = [
   ]},
   { title: "도움말", items: [
     ["about.html", "만든 이야기", "이 사이트를 만든 이유와 업데이트 기록", "leaf"],
+    ["app.html", "앱으로 설치", "홈 화면에 앱처럼 두고 쓰기", "phone"],
     ["contact.html", "문의·제휴", "틀린 곳 제보, 제휴 제안", "mail"],
   ]},
 ];
@@ -140,6 +141,9 @@ const ICONS = {
   share: '<circle cx="17" cy="6" r="2.3"/><circle cx="7" cy="12" r="2.3"/><circle cx="17" cy="18" r="2.3"/><path d="M9 11l6-3.5M9 13l6 3.5"/>',
   copy: '<rect x="8" y="8" width="11" height="11" rx="2.2"/><path d="M5 15V6.5A1.5 1.5 0 0 1 6.5 5H15"/>',
   menu: '<path d="M4.5 7h15M4.5 12h15M4.5 17h15"/>',
+  phone: '<rect x="7" y="3" width="10" height="18" rx="2.5"/><path d="M11 17.5h2"/>',
+  home: '<path d="M4.5 11L12 4.5l7.5 6.5"/><path d="M6.5 9.5V19h11V9.5"/>',
+  grid: '<rect x="4.5" y="4.5" width="6" height="6" rx="1.5"/><rect x="13.5" y="4.5" width="6" height="6" rx="1.5"/><rect x="4.5" y="13.5" width="6" height="6" rx="1.5"/><rect x="13.5" y="13.5" width="6" height="6" rx="1.5"/>',
   moon: '<path d="M19 14.5A7.5 7.5 0 0 1 9.5 5a7.5 7.5 0 1 0 9.5 9.5z"/>',
 };
 const icon = (name) => `<svg class="icon" viewBox="0 0 24 24" aria-hidden="true">${ICONS[name] || ""}</svg>`;
@@ -208,7 +212,7 @@ function renderChrome() {
   foot.innerHTML = `<div class="wrap">
     <div class="brandline">세금 도우미</div>
     <div>숫자만 넣으면 세금이 보이는 작은 계산기 모음입니다. ${RATES.year}년 기준 요율로 계산한 추정치라, 실제 금액은 회사나 개인 상황에 따라 조금 다를 수 있어요.</div>
-    <nav><a href="about.html">만든 이야기</a><a href="contact.html">문의·제휴</a><a href="terms.html">이용약관</a><a href="privacy.html">개인정보처리방침</a></nav>
+    <nav><a href="app.html">앱 설치</a><a href="about.html">만든 이야기</a><a href="contact.html">문의·제휴</a><a href="terms.html">이용약관</a><a href="privacy.html">개인정보처리방침</a></nav>
     <div>© ${new Date().getFullYear()} 세금 도우미</div></div>`;
   document.body.appendChild(foot);
 
@@ -222,6 +226,42 @@ function renderChrome() {
     document.documentElement.dataset.theme = next;
     try { localStorage.setItem("theme", next); } catch (e) {}
   });
+}
+
+// ── 앱으로 쓰기 ─────────────────────────────────────────────
+// 홈 화면에 설치해서 열었거나(PWA), 안드로이드 앱(Capacitor) 안에서 열린 경우
+const IS_APP = matchMedia("(display-mode: standalone)").matches || navigator.standalone === true || !!window.Capacitor;
+const IS_IOS = /iphone|ipad|ipod/i.test(navigator.userAgent) || (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1);
+let installEvent = null;
+window.addEventListener("beforeinstallprompt", (e) => { e.preventDefault(); installEvent = e; updateInstallButtons(); });
+window.addEventListener("appinstalled", () => { installEvent = null; toast("설치됐어요. 홈 화면에서 열어보세요"); updateInstallButtons(); });
+function updateInstallButtons() {
+  document.querySelectorAll("[data-install]").forEach((el) => { el.hidden = IS_APP; });
+  document.querySelectorAll("[data-install-hint]").forEach((el) => {
+    el.textContent = IS_APP ? "이미 앱으로 쓰고 계세요." : installEvent ? "버튼을 누르면 바로 설치돼요." : IS_IOS ? "Safari 아래쪽 공유 버튼 → '홈 화면에 추가'를 눌러주세요." : "브라우저 메뉴(⋮)에서 '앱 설치' 또는 '홈 화면에 추가'를 눌러주세요.";
+  });
+}
+async function installApp() {
+  if (installEvent) { installEvent.prompt(); await installEvent.userChoice.catch(() => {}); installEvent = null; updateInstallButtons(); return; }
+  if (!location.pathname.endsWith("app.html")) location.href = "app.html";
+  else document.getElementById(IS_IOS ? "ios" : "android")?.scrollIntoView({ behavior: "smooth" });
+}
+function renderAppBar() {
+  if (!IS_APP) return;
+  document.documentElement.classList.add("is-app");
+  const here = location.pathname.split("/").pop() || "index.html";
+  const tabs = [["index.html", "홈", "home"], ["salary.html", "월급", "wallet"], ["business-tax.html", "종소세", "store"], ["vat-pay.html", "부가세", "calc"]];
+  const bar = document.createElement("nav");
+  bar.className = "appbar";
+  bar.setAttribute("aria-label", "앱 메뉴");
+  bar.innerHTML = tabs.map(([h, t, ic]) => `<a href="${h}" class="${h === here ? "on" : ""}">${icon(ic)}<span>${t}</span></a>`).join("") +
+    `<button type="button">${icon("grid")}<span>전체</span></button>`;
+  bar.querySelector("button").addEventListener("click", (e) => {
+    e.stopPropagation();
+    const m = document.querySelector(".menu-mobile") || document.querySelector(".menu-desktop");
+    if (m) { m.open = !m.open; window.scrollTo({ top: 0, behavior: "smooth" }); }
+  });
+  document.body.appendChild(bar);
 }
 
 // ── 제휴 영역 ───────────────────────────────────────────────
@@ -252,7 +292,10 @@ function renderAds() {
 
 document.addEventListener("DOMContentLoaded", () => {
   renderChrome();
+  renderAppBar();
   fillIcons();
+  updateInstallButtons();
+  document.querySelectorAll("[data-install]").forEach((el) => el.addEventListener("click", installApp));
   renderPartners();
   renderAds();
   if ("serviceWorker" in navigator) navigator.serviceWorker.register("sw.js").catch(() => {});

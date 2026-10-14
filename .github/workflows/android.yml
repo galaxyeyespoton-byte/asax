@@ -1,0 +1,68 @@
+name: Android 앱 빌드
+
+on:
+  push:
+    branches: [main, claude/100won-monetization-project-pt8p14]
+    paths: ["app/**", "*.html", "assets/**", "manifest.webmanifest", ".github/workflows/android.yml"]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    env:
+      VERSION_CODE: ${{ github.run_number }}
+      VERSION_NAME: 1.0.${{ github.run_number }}
+      KEYSTORE_B64: ${{ secrets.ANDROID_KEYSTORE_BASE64 }}
+    defaults:
+      run:
+        working-directory: app
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: app/package-lock.json
+
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: 21
+
+      - name: 의존성 설치
+        run: npm ci
+
+      - name: 웹 파일 복사, 안드로이드 프로젝트 생성, 아이콘·스플래시 적용
+        run: npm run android:prepare
+
+      - name: 테스트용 APK 빌드
+        run: cd android && ./gradlew assembleDebug --no-daemon
+
+      - name: 테스트용 APK 올리기
+        uses: actions/upload-artifact@v4
+        with:
+          name: sejeumdoumi-test-apk-${{ github.run_number }}
+          path: app/android/app/build/outputs/apk/debug/app-debug.apk
+
+      # 아래는 서명 키(Secrets)를 등록했을 때만 실행됩니다. 플레이 스토어 업로드용 AAB 파일.
+      - name: 서명 키 준비
+        if: env.KEYSTORE_B64 != ''
+        run: echo "$KEYSTORE_B64" | base64 -d > "$GITHUB_WORKSPACE/release.jks"
+
+      - name: 스토어용 AAB 빌드 (서명)
+        if: env.KEYSTORE_B64 != ''
+        run: >
+          npx cap build android
+          --keystorepath "$GITHUB_WORKSPACE/release.jks"
+          --keystorepass "${{ secrets.ANDROID_KEYSTORE_PASSWORD }}"
+          --keystorealias "${{ secrets.ANDROID_KEY_ALIAS }}"
+          --keystorealiaspass "${{ secrets.ANDROID_KEY_PASSWORD }}"
+          --androidreleasetype AAB
+
+      - name: 스토어용 AAB 올리기
+        if: env.KEYSTORE_B64 != ''
+        uses: actions/upload-artifact@v4
+        with:
+          name: sejeumdoumi-playstore-aab-${{ github.run_number }}
+          path: app/android/app/build/outputs/bundle/release/*.aab

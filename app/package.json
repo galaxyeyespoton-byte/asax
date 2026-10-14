@@ -1,0 +1,17 @@
+{
+  "name": "taxhelper-app",
+  "version": "1.0.0",
+  "private": true,
+  "description": "세금 도우미 안드로이드 앱 (Capacitor)",
+  "scripts": {
+    "copy-web": "node scripts/copy-web.mjs",
+    "android:prepare": "node scripts/copy-web.mjs && (test -d android || npx cap add android) && npx cap sync android && bash scripts/android-res.sh"
+  },
+  "dependencies": {
+    "@capacitor/android": "7.6.9",
+    "@capacitor/core": "7.6.9"
+  },
+  "devDependencies": {
+    "@capacitor/cli": "7.6.9"
+  }
+}

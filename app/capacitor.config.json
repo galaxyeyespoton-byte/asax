@@ -1,0 +1,8 @@
+{
+  "appId": "io.github.galaxyeyespoton.taxhelper",
+  "appName": "세금 도우미",
+  "webDir": "www",
+  "android": {
+    "backgroundColor": "#f5f5f0"
+  }
+}
