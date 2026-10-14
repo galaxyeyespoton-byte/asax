@@ -1,0 +1,24 @@
+{
+  "name": "세금 도우미 - 연봉·자영업자 세금 계산기",
+  "short_name": "세금도우미",
+  "description": "2026 연봉 실수령액, 3.3% 세금, 주휴수당, 퇴직금, 부가세 계산기",
+  "lang": "ko",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#f6f7fb",
+  "theme_color": "#2c5cf6",
+  "icons": [
+    {
+      "src": "assets/icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    },
+    {
+      "src": "assets/icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "maskable"
+    }
+  ]
+}

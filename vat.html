@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>부가세 계산기 · 공급가액 부가세 10% 역산 | 세금 도우미</title>
+<meta name="description" content="공급가액에서 부가세 10%를 더하거나, 합계금액에서 공급가액과 부가세를 나눠 계산합니다.">
+<link rel="canonical" href="https://galaxyeyespoton-byte.github.io/asax/vat.html">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="세금 도우미">
+<meta property="og:title" content="부가세 계산기 · 공급가액 부가세 10% 역산 | 세금 도우미">
+<meta property="og:description" content="공급가액에서 부가세 10%를 더하거나, 합계금액에서 공급가액과 부가세를 나눠 계산합니다.">
+<meta property="og:url" content="https://galaxyeyespoton-byte.github.io/asax/vat.html">
+<meta name="theme-color" content="#2c5cf6">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="assets/icon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="assets/icon.svg">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;600;700;800&display=swap">
+<link rel="stylesheet" href="assets/style.css">
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2484423746725349" crossorigin="anonymous"></script>
+<script src="assets/common.js" defer></script>
+</head>
+<body>
+<main class="wrap">
+  <h1>부가세 계산기</h1>
+  <p class="lead">부가가치세 10%를 더하거나, 합계금액에서 거꾸로 나눠 봅니다.</p>
+
+  <div class="card">
+    <div class="seg" id="mode"><button type="button" class="on" data-m="supply">공급가액 → 합계</button><button type="button" data-m="total">합계금액 → 공급가액</button></div>
+    <div class="field">
+      <label for="amount" id="amountLabel">공급가액</label>
+      <div class="input"><input id="amount" inputmode="numeric" value="1,000,000"><span>원</span></div>
+      <div class="korean" data-korean-for="amount"></div>
+    </div>
+  </div>
+
+  <div class="card result">
+    <div class="label" id="resLabel">합계금액 (부가세 포함)</div>
+    <div class="big" id="res">-</div>
+    <div class="sub" id="resSub"></div>
+    <div class="actions"><button type="button" id="copy">📋 금액 복사</button></div>
+  </div>
+  <div class="card"><table class="breakdown" id="breakdown"></table></div>
+  <div class="ad"></div>
+
+  <div class="card content">
+    <h2>부가세 계산법</h2>
+    <ul>
+      <li><b>부가세 = 공급가액 × 10%</b></li>
+      <li><b>합계금액 = 공급가액 × 1.1</b></li>
+      <li><b>공급가액 = 합계금액 ÷ 1.1</b> (원 단위 이하 버림)</li>
+    </ul>
+    <p>세금계산서에는 공급가액과 세액을 따로 적습니다. 합계금액만 알 때는 1.1로 나누면 공급가액이 나옵니다.</p>
+    <h3>자주 묻는 질문</h3>
+    <details><summary>간이과세자도 10%인가요?</summary><p>간이과세자는 업종별 부가가치율(15~40%)을 곱한 뒤 10%를 적용해 실제 부담이 더 낮습니다. 다만 세금계산서를 발급하는 간이과세자는 거래 상대방에게 10%를 받습니다.</p></details>
+    <details><summary>부가세 신고 기간은 언제인가요?</summary><p>일반과세자는 1월(2기 확정)과 7월(1기 확정)에 신고합니다. 법인은 4월·10월 예정신고도 있습니다. 간이과세자는 1년에 한 번, 1월에 신고합니다.</p></details>
+  </div>
+  <div class="ad"></div>
+</main>
+
+<script type="module">
+const $ = (id) => document.getElementById(id);
+let mode = "supply";
+function setMode(m) {
+  mode = m;
+  document.querySelectorAll("#mode button").forEach((b) => b.classList.toggle("on", b.dataset.m === m));
+  $("amountLabel").textContent = m === "supply" ? "공급가액" : "합계금액 (부가세 포함)";
+  $("resLabel").textContent = m === "supply" ? "합계금액 (부가세 포함)" : "공급가액";
+  render();
+}
+function render() {
+  const a = parseNum($("amount").value);
+  let supply, vat;
+  if (mode === "supply") { supply = a; vat = Math.floor(a * 0.1); }
+  else { supply = Math.floor(a / 1.1); vat = a - supply; }
+  const total = supply + vat;
+  $("res").textContent = won(mode === "supply" ? total : supply);
+  $("resSub").textContent = `부가세 ${won(vat)}`;
+  $("breakdown").innerHTML =
+    `<tr><td>공급가액</td><td>${won(supply)}</td></tr><tr><td>부가세 (10%)</td><td>${won(vat)}</td></tr><tr class="total"><td>합계금액</td><td>${won(total)}</td></tr>`;
+}
+moneyInput($("amount"));
+$("amount").addEventListener("input", render);
+document.querySelectorAll("#mode button").forEach((b) => b.addEventListener("click", () => setMode(b.dataset.m)));
+$("copy").addEventListener("click", async () => {
+  try { await navigator.clipboard.writeText(String(parseNum($("res").textContent))); toast("복사했어요"); } catch (e) {}
+});
+setMode("supply");
+</script>
+</body>
+</html>

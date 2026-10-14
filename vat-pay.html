@@ -1,0 +1,151 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>부가세 납부세액 계산기 · 일반과세자 간이과세자 | 세금 도우미</title>
+<meta name="description" content="일반과세자와 간이과세자의 부가가치세 납부세액을 계산합니다. 매입세액공제, 업종별 부가가치율, 신용카드매출세액공제, 납부면제까지 반영.">
+<link rel="canonical" href="https://galaxyeyespoton-byte.github.io/asax/vat-pay.html">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="세금 도우미">
+<meta property="og:title" content="부가세 납부세액 계산기 · 일반과세자 간이과세자 | 세금 도우미">
+<meta property="og:description" content="일반과세자와 간이과세자의 부가가치세 납부세액을 계산합니다. 매입세액공제, 업종별 부가가치율, 신용카드매출세액공제, 납부면제까지 반영.">
+<meta property="og:url" content="https://galaxyeyespoton-byte.github.io/asax/vat-pay.html">
+<meta name="theme-color" content="#2c5cf6">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="assets/icon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="assets/icon.svg">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;600;700;800&display=swap">
+<link rel="stylesheet" href="assets/style.css">
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2484423746725349" crossorigin="anonymous"></script>
+<script src="assets/common.js" defer></script>
+</head>
+<body>
+<main class="wrap">
+  <h1>부가세 납부세액 계산기</h1>
+  <p class="lead">사장님이 이번 신고 때 낼 부가가치세를 미리 계산해 봅니다.</p>
+
+  <div class="card">
+    <div class="seg" id="mode"><button type="button" class="on" data-m="general">일반과세자</button><button type="button" data-m="simple">간이과세자</button></div>
+
+    <div id="simpleOnly" hidden>
+      <div class="field">
+        <label for="industry">업종</label>
+        <div class="input"><select id="industry">
+          <option value="0.15">소매업 · 음식점업 · 재생용 재료수집 및 판매업 (15%)</option>
+          <option value="0.2">제조업 · 농업·임업·어업 · 소화물 전문 운송업 (20%)</option>
+          <option value="0.25">숙박업 (25%)</option>
+          <option value="0.3" selected>건설업 · 운수·창고업 · 정보통신업 · 그 밖의 서비스업 (30%)</option>
+          <option value="0.4">금융·보험 · 전문·과학·기술서비스 · 사업시설관리 · 부동산 관련 서비스 · 부동산임대업 (40%)</option>
+        </select></div>
+        <div class="hint">괄호 안은 업종별 부가가치율입니다 (부가가치세법 시행령 제111조).</div>
+      </div>
+    </div>
+
+    <div class="field">
+      <label for="sales" id="salesLabel">매출 (공급가액, 부가세 제외)</label>
+      <div class="input"><input id="sales" inputmode="numeric" value="60,000,000"><span>원</span></div>
+      <div class="korean" data-korean-for="sales"></div>
+      <div class="hint" id="salesHint">이번 과세기간(6개월) 매출</div>
+    </div>
+    <div class="field">
+      <label for="purchase" id="purchaseLabel">매입 (공급가액, 부가세 제외)</label>
+      <div class="input"><input id="purchase" inputmode="numeric" value="30,000,000"><span>원</span></div>
+      <div class="korean" data-korean-for="purchase"></div>
+      <div class="hint">세금계산서, 사업용 카드, 지출증빙 현금영수증을 받은 매입만</div>
+    </div>
+    <div class="field">
+      <label for="card">그중 카드·현금영수증 매출 (부가세 포함)</label>
+      <div class="input"><input id="card" inputmode="numeric" value="40,000,000"><span>원</span></div>
+      <div class="hint">신용카드매출세액공제 1.3% (연 1,000만원 한도, 직전 연도 매출 10억원 이하 개인사업자)</div>
+    </div>
+  </div>
+
+  <div class="card result">
+    <div class="label" id="resLabel">납부할 부가세</div>
+    <div class="big" id="res">-</div>
+    <div class="sub" id="resSub"></div>
+    <div class="actions"><button type="button" id="share">📤 결과 공유</button></div>
+  </div>
+  <div class="card"><h2>계산 과정</h2><table class="breakdown" id="breakdown"></table><p class="note" id="extra"></p></div>
+  <div class="ad"></div>
+
+  <div class="card content">
+    <h2>일반과세자 vs 간이과세자</h2>
+    <div class="table-scroll"><table class="data">
+      <tr><th>구분</th><th>일반과세자</th><th>간이과세자</th></tr>
+      <tr><td>대상</td><td>연 매출 1억 400만원 이상</td><td>연 매출 1억 400만원 미만</td></tr>
+      <tr><td>납부세액</td><td>매출세액 − 매입세액</td><td>매출 × 부가가치율 × 10%</td></tr>
+      <tr><td>매입 공제</td><td>매입세액 전액</td><td>매입액 × 0.5%</td></tr>
+      <tr><td>환급</td><td>가능</td><td>불가</td></tr>
+      <tr><td>신고</td><td>1년 2회 (1월, 7월)</td><td>1년 1회 (1월)</td></tr>
+      <tr><td>납부면제</td><td>없음</td><td>연 매출 4,800만원 미만</td></tr>
+    </table></div>
+    <h3>계산 공식</h3>
+    <ul>
+      <li><b>일반과세자</b>: 매출 × 10% − 매입 × 10% − 카드매출세액공제</li>
+      <li><b>간이과세자</b>: 매출(부가세 포함) × 업종별 부가가치율 × 10% − 매입(부가세 포함) × 0.5% − 카드매출세액공제</li>
+    </ul>
+    <h3>자주 묻는 질문</h3>
+    <details><summary>간이과세자는 무조건 유리한가요?</summary><p>세금 자체는 적지만, 매입이 많은 업종(인테리어·초기 설비 투자 등)은 일반과세자로 등록해야 매입세액을 환급받을 수 있습니다. 거래처가 세금계산서를 요구하는 업종도 일반과세가 편할 수 있습니다.</p></details>
+    <details><summary>간이과세자인데 매출이 4,800만원 미만이면 신고도 안 하나요?</summary><p>납부만 면제되고 신고는 해야 합니다. 1월 25일까지 홈택스에서 신고하세요.</p></details>
+    <details><summary>신용카드매출세액공제는 계속 받을 수 있나요?</summary><p>1.3% 공제율과 연 1,000만원 한도는 2026년 12월 31일까지 적용됩니다. 2027년 이후 공제율과 한도는 세법 개정에 따라 달라질 수 있습니다.</p></details>
+  </div>
+  <div class="ad"></div>
+</main>
+
+<script type="module">
+const $ = (id) => document.getElementById(id);
+let mode = "general";
+const ids = ["sales", "purchase", "card", "industry"];
+function setMode(m) {
+  mode = m;
+  document.querySelectorAll("#mode button").forEach((b) => b.classList.toggle("on", b.dataset.m === m));
+  $("simpleOnly").hidden = m !== "simple";
+  $("salesLabel").textContent = m === "general" ? "매출 (공급가액, 부가세 제외)" : "연 매출 (공급대가, 부가세 포함)";
+  $("purchaseLabel").textContent = m === "general" ? "매입 (공급가액, 부가세 제외)" : "연 매입 (공급대가, 부가세 포함)";
+  $("salesHint").textContent = m === "general" ? "이번 과세기간(6개월) 매출" : "1월~12월 1년 매출";
+  render();
+}
+function render() {
+  const sales = parseNum($("sales").value), purchase = parseNum($("purchase").value), card = parseNum($("card").value);
+  const cardCredit = Math.min(Math.floor(card * 0.013), 1e7);
+  let rows = "", pay, note = "";
+  if (mode === "general") {
+    const out = Math.floor(sales * 0.1), inn = Math.floor(purchase * 0.1);
+    const before = out - inn;
+    const credit = Math.min(cardCredit, Math.max(0, before));
+    pay = before - credit;
+    rows = `<tr><td>매출세액 (매출 × 10%)</td><td>${won(out)}</td></tr>
+      <tr><td>매입세액 (매입 × 10%)</td><td class="minus">-${won(inn)}</td></tr>
+      <tr><td>신용카드매출세액공제</td><td class="minus">-${won(credit)}</td></tr>`;
+    if (pay < 0) note = "매입세액이 더 많아 환급 대상입니다. 확정신고 후 약 30일 안에 환급됩니다.";
+  } else {
+    const rate = parseFloat($("industry").value);
+    const out = Math.floor(sales * rate * 0.1), inn = Math.floor(purchase * 0.005);
+    const credit = Math.min(cardCredit, Math.max(0, out - inn));
+    pay = Math.max(0, out - inn - credit);
+    rows = `<tr><td>매출 × 부가가치율 ${rate * 100}% × 10%</td><td>${won(out)}</td></tr>
+      <tr><td>매입세액공제 (매입 × 0.5%)</td><td class="minus">-${won(Math.min(inn, out))}</td></tr>
+      <tr><td>신용카드매출세액공제</td><td class="minus">-${won(credit)}</td></tr>`;
+    if (sales < 4.8e7) { note = "연 매출 4,800만원 미만이라 납부가 면제됩니다. 신고는 해야 합니다."; pay = 0; }
+    else if (sales >= 1.04e8) note = "연 매출이 1억 400만원 이상이면 다음 해 7월부터 일반과세자로 바뀝니다.";
+    else note = "간이과세자는 공제액이 납부세액보다 많아도 환급되지 않습니다.";
+  }
+  $("resLabel").textContent = pay < 0 ? "환급받을 부가세" : "납부할 부가세";
+  $("res").textContent = won(Math.abs(pay));
+  $("resSub").textContent = sales ? `매출 대비 ${(Math.abs(pay) / sales * 100).toFixed(2)}%` : "";
+  $("breakdown").innerHTML = rows + `<tr class="total"><td>${pay < 0 ? "환급세액" : "납부세액"}</td><td>${won(Math.abs(pay))}</td></tr>`;
+  $("extra").textContent = note;
+  writeParams(ids);
+  if (mode === "simple") history.replaceState(null, "", location.search + "&type=simple");
+}
+readParams(ids);
+["sales", "purchase", "card"].forEach((id) => moneyInput($(id)));
+ids.forEach((id) => $(id).addEventListener("input", render));
+document.querySelectorAll("#mode button").forEach((b) => b.addEventListener("click", () => setMode(b.dataset.m)));
+$("share").addEventListener("click", () => shareResult(`부가세 계산: ${$("resLabel").textContent} ${$("res").textContent}`));
+setMode(new URLSearchParams(location.search).get("type") === "simple" ? "simple" : "general");
+</script>
+</body>
+</html>

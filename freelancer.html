@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>3.3% 프리랜서 세금 계산기 · 종합소득세 환급 예상 | 세금 도우미</title>
+<meta name="description" content="프리랜서·알바 3.3% 원천징수 세후 금액 계산, 세후→세전 역산, 5월 종합소득세 환급 예상액까지 한 번에.">
+<link rel="canonical" href="https://galaxyeyespoton-byte.github.io/asax/freelancer.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="3.3% 프리랜서 세금 계산기">
+<meta property="og:description" content="3.3% 떼면 얼마 받을까? 종합소득세 환급은 얼마나 될까?">
+<meta property="og:url" content="https://galaxyeyespoton-byte.github.io/asax/freelancer.html">
+<meta name="theme-color" content="#2c5cf6">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="assets/icon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="assets/icon.svg">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;600;700;800&display=swap">
+<link rel="stylesheet" href="assets/style.css">
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2484423746725349" crossorigin="anonymous"></script>
+<script src="assets/common.js" defer></script>
+</head>
+<body>
+<main class="wrap">
+  <h1>3.3% 프리랜서 세금 계산기</h1>
+  <p class="lead">사업소득 원천징수(소득세 3% + 지방소득세 0.3%)를 계산합니다.</p>
+
+  <div class="card">
+    <div class="seg" id="mode"><button type="button" class="on" data-m="gross">세전 → 세후</button><button type="button" data-m="net">세후 → 세전</button></div>
+    <div class="field">
+      <label for="amount" id="amountLabel">받기로 한 금액 (세전)</label>
+      <div class="input"><input id="amount" inputmode="numeric" value="1,000,000"><span>원</span></div>
+      <div class="korean" data-korean-for="amount"></div>
+    </div>
+  </div>
+
+  <div class="card result">
+    <div class="label" id="resLabel">실제 입금액</div>
+    <div class="big" id="res">-</div>
+    <div class="sub" id="resSub"></div>
+    <div class="actions"><button type="button" id="share">📤 결과 공유</button></div>
+  </div>
+  <div class="card"><table class="breakdown" id="breakdown"></table></div>
+
+  <div class="ad"></div>
+
+  <div class="card">
+    <h2>5월 종합소득세 환급 예상</h2>
+    <p class="note" style="margin-top:-6px">1년 동안 3.3%를 떼고 받은 총액을 넣으면, 미리 낸 세금과 실제 낼 세금을 비교해 환급 또는 추가 납부액을 추정합니다.</p>
+    <div class="field">
+      <label for="yearly">연간 수입 합계 (세전)</label>
+      <div class="input"><input id="yearly" inputmode="numeric" value="24,000,000"><span>원</span></div>
+      <div class="korean" data-korean-for="yearly"></div>
+    </div>
+    <div class="row2">
+      <div class="field">
+        <label for="expense">필요경비율</label>
+        <div class="input"><input id="expense" inputmode="decimal" value="60"><span>%</span></div>
+        <div class="hint">홈택스에서 업종코드로 조회 (아래 설명)</div>
+      </div>
+      <div class="field">
+        <label for="family">부양가족 수 (본인 포함)</label>
+        <div class="input"><input id="family" inputmode="numeric" value="1"><span>명</span></div>
+      </div>
+    </div>
+    <table class="breakdown" id="yearBreakdown"></table>
+    <p id="verdict" style="font-weight:800;font-size:18px;margin:14px 0 0"></p>
+  </div>
+
+  <div class="card content">
+    <h2>3.3% 세금, 이렇게 계산됩니다</h2>
+    <p>회사가 프리랜서에게 돈을 줄 때는 <b>사업소득세 3%</b>와 그 10%인 <b>지방소득세 0.3%</b>를 떼고 줍니다. 100만원이면 33,000원을 떼고 967,000원이 입금됩니다.</p>
+    <p>이렇게 뗀 세금은 "미리 낸 세금"입니다. 다음 해 5월 종합소득세 신고에서 실제 세금을 다시 계산하는데, 수입이 적거나 경비가 많으면 <b>미리 낸 세금 일부를 돌려받습니다.</b></p>
+    <h3>필요경비율은 어디서 확인하나요?</h3>
+    <p>국세청이 업종코드별로 매년 <b>단순경비율·기준경비율</b>을 고시합니다. 홈택스에서 <b>조회/발급 → 기타조회 → 기준·단순경비율(업종코드) 조회</b>로 들어가 본인 업종코드(예: 940909 기타 자영업, 940306 1인 미디어 창작자, 940100 작가)를 검색하면 됩니다. 입력칸의 기본값 60%는 예시입니다.</p>
+    <p class="note">경비율은 해마다 고시로 바뀌고, 직전 연도 수입이 일정 금액 이상이면 기준경비율이나 장부 기준이 적용됩니다. 정확한 금액은 홈택스 신고 화면에서 확인하세요.</p>
+    <h3>자주 묻는 질문</h3>
+    <details><summary>알바인데 3.3%를 떼요. 4대보험은요?</summary><p>3.3%를 떼는 계약은 근로자가 아닌 사업소득자로 처리한 것이라 4대보험이 없습니다. 실제로는 근로자처럼 일했다면 근로자로 인정받을 수 있으니 고용노동부 상담(1350)을 받아보세요.</p></details>
+    <details><summary>환급은 언제 받나요?</summary><p>5월에 종합소득세를 신고하면 보통 6월 말쯤 신고한 계좌로 들어옵니다. 지난 5년 치를 한꺼번에 신청할 수도 있습니다(경정청구).</p></details>
+  </div>
+  <div class="ad"></div>
+</main>
+
+<script type="module">
+const $ = (id) => document.getElementById(id);
+let mode = new URLSearchParams(location.search).get("mode") === "net" ? "net" : "gross";
+const ids = ["amount", "yearly", "expense", "family"];
+
+function setMode(m) {
+  mode = m;
+  document.querySelectorAll("#mode button").forEach((b) => b.classList.toggle("on", b.dataset.m === m));
+  $("amountLabel").textContent = m === "gross" ? "받기로 한 금액 (세전)" : "통장에 들어와야 할 금액 (세후)";
+  $("resLabel").textContent = m === "gross" ? "실제 입금액" : "청구해야 할 금액 (세전)";
+  render();
+}
+
+function render() {
+  const a = parseNum($("amount").value);
+  let gross, net;
+  if (mode === "gross") gross = a; else gross = Math.ceil(a / 0.967);
+  const tax = floor10(gross * 0.03), local = floor10(tax * 0.1);
+  net = gross - tax - local;
+  $("res").textContent = won(mode === "gross" ? net : gross);
+  $("resSub").textContent = a ? `원천징수 ${won(tax + local)} (3.3%)` : "";
+  $("breakdown").innerHTML =
+    `<tr><td>세전 금액</td><td>${won(gross)}</td></tr>` +
+    `<tr><td>소득세 (3%)</td><td class="minus">-${won(tax)}</td></tr>` +
+    `<tr><td>지방소득세 (0.3%)</td><td class="minus">-${won(local)}</td></tr>` +
+    `<tr class="total"><td>실수령액</td><td>${won(net)}</td></tr>`;
+
+  const y = parseNum($("yearly").value);
+  const rate = Math.min(100, parseFloat($("expense").value) || 0) / 100;
+  const fam = Math.max(1, parseNum($("family").value));
+  const incomeAmt = y * (1 - rate);
+  const base = Math.max(0, incomeAmt - 1.5e6 * fam);
+  const finalTax = Math.max(0, progressiveTax(base) - 70000);
+  const totalDue = floor10(finalTax) + floor10(finalTax * 0.1);
+  const prepaid = floor10(y * 0.03) + floor10(floor10(y * 0.03) * 0.1);
+  const diff = prepaid - totalDue;
+  $("yearBreakdown").innerHTML =
+    `<tr><td>소득금액 (수입 − 경비)</td><td>${won(incomeAmt)}</td></tr>` +
+    `<tr><td>과세표준 (인적공제 후)</td><td>${won(base)}</td></tr>` +
+    `<tr><td>실제 낼 세금 (지방세 포함)</td><td>${won(totalDue)}</td></tr>` +
+    `<tr><td>미리 낸 세금 (3.3%)</td><td>${won(prepaid)}</td></tr>`;
+  $("verdict").innerHTML = !y ? "" : diff >= 0
+    ? `예상 환급액 <span style="color:var(--good)">${won(diff)}</span>`
+    : `예상 추가 납부 <span style="color:var(--warn)">${won(-diff)}</span>`;
+  writeParams(ids);
+  if (mode === "net") history.replaceState(null, "", location.search + "&mode=net");
+}
+
+readParams(ids);
+["amount", "yearly"].forEach((id) => moneyInput($(id)));
+ids.forEach((id) => $(id).addEventListener("input", render));
+document.querySelectorAll("#mode button").forEach((b) => b.addEventListener("click", () => setMode(b.dataset.m)));
+$("share").addEventListener("click", () => shareResult(`3.3% 계산: ${$("resLabel").textContent} ${$("res").textContent}`));
+setMode(mode);
+</script>
+</body>
+</html>

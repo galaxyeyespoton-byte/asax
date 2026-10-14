@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://galaxyeyespoton-byte.github.io/asax/sitemap.xml

@@ -1,0 +1,200 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>2026 연봉 실수령액 계산기 | 세금 도우미</title>
+<meta name="description" content="2026년 4대보험 요율(국민연금 4.75%, 건강보험 3.595%)과 소득세를 반영한 연봉 실수령액 계산기. 연봉별 월급 실수령액 표 제공.">
+<link rel="canonical" href="https://galaxyeyespoton-byte.github.io/asax/salary.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="2026 연봉 실수령액 계산기">
+<meta property="og:description" content="내 연봉, 한 달에 실제로 얼마 받을까? 4대보험·소득세 공제 후 실수령액을 바로 계산하세요.">
+<meta property="og:url" content="https://galaxyeyespoton-byte.github.io/asax/salary.html">
+<meta name="theme-color" content="#2c5cf6">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="assets/icon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="assets/icon.svg">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;600;700;800&display=swap">
+<link rel="stylesheet" href="assets/style.css">
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2484423746725349" crossorigin="anonymous"></script>
+<script src="assets/common.js" defer></script>
+</head>
+<body>
+<main class="wrap">
+  <h1>연봉 실수령액 계산기</h1>
+  <p class="lead">2026년 4대보험 요율과 소득세를 반영해 한 달 실수령액을 계산합니다.</p>
+
+  <div class="card">
+    <div class="field">
+      <label for="salary">연봉 (세전)</label>
+      <div class="input"><input id="salary" inputmode="numeric" autocomplete="off" value="40,000,000"><span>원</span></div>
+      <div class="korean" data-korean-for="salary"></div>
+      <div class="chips" data-target="salary">
+        <button type="button" data-v="30000000">3천만</button><button type="button" data-v="40000000">4천만</button>
+        <button type="button" data-v="50000000">5천만</button><button type="button" data-v="60000000">6천만</button>
+        <button type="button" data-v="80000000">8천만</button><button type="button" data-v="100000000">1억</button>
+      </div>
+    </div>
+    <div class="row2">
+      <div class="field">
+        <label for="nontax">월 비과세액</label>
+        <div class="input"><input id="nontax" inputmode="numeric" value="200,000"><span>원</span></div>
+        <div class="hint">식대는 월 20만원까지 비과세</div>
+      </div>
+      <div class="field">
+        <label for="family">부양가족 수 (본인 포함)</label>
+        <div class="input"><input id="family" inputmode="numeric" value="1"><span>명</span></div>
+      </div>
+    </div>
+    <div class="field">
+      <label for="kids">8~20세 자녀 수</label>
+      <div class="input"><input id="kids" inputmode="numeric" value="0" placeholder="0"><span>명</span></div>
+    </div>
+  </div>
+
+  <div class="card result">
+    <div class="label">예상 월 실수령액</div>
+    <div class="big" id="net">-</div>
+    <div class="sub" id="netSub"></div>
+    <div class="actions"><button type="button" id="share">📤 결과 공유</button></div>
+  </div>
+
+  <div class="ad"></div>
+
+  <div class="card">
+    <h2>월 공제 내역</h2>
+    <div class="bar" id="bar"></div>
+    <div class="legend" id="legend"></div>
+    <table class="breakdown" id="breakdown"></table>
+    <p class="note">소득세는 연간 기준(근로소득공제·인적공제·보험료공제·근로소득세액공제·자녀세액공제)으로 계산해 12개월로 나눈 추정치입니다. 회사가 쓰는 간이세액표와 몇천 원 정도 차이가 날 수 있습니다.</p>
+  </div>
+
+  <div class="card">
+    <h2>2026 연봉별 실수령액 표</h2>
+    <p class="note">비과세 식대 20만원, 부양가족 1명(본인), 자녀 0명 기준</p>
+    <div class="table-scroll"><table class="data" id="table"></table></div>
+  </div>
+
+  <div class="ad"></div>
+
+  <div class="card content">
+    <h2>연봉에서 빠지는 돈, 무엇이 있나요?</h2>
+    <p>월급 명세서에서 빠지는 금액은 크게 <b>4대보험</b>과 <b>세금</b> 두 가지입니다.</p>
+    <h3>4대보험 (2026년 근로자 부담분)</h3>
+    <ul>
+      <li><b>국민연금 4.75%</b>: 연금개혁으로 2026년부터 총 보험료율이 9%에서 9.5%로 올랐고, 회사와 절반씩 냅니다. 기준소득월액 상한(659만원)을 넘는 소득에는 더 붙지 않습니다.</li>
+      <li><b>건강보험 3.595%</b>: 총 7.19%를 회사와 절반씩 냅니다.</li>
+      <li><b>장기요양보험</b>: 건강보험료의 13.14%가 추가로 붙습니다.</li>
+      <li><b>고용보험 0.9%</b>: 실업급여 재원입니다.</li>
+    </ul>
+    <h3>세금</h3>
+    <ul>
+      <li><b>근로소득세</b>: 과세표준 구간에 따라 6~45% 누진세율이 적용됩니다.</li>
+      <li><b>지방소득세</b>: 근로소득세의 10%입니다.</li>
+    </ul>
+    <h3>자주 묻는 질문</h3>
+    <details><summary>비과세액은 왜 입력하나요?</summary><p>식대(월 20만원까지), 자가운전보조금, 출산·보육수당 등 비과세 항목은 4대보험과 소득세 계산에서 빠집니다. 비과세가 클수록 실수령액이 늘어납니다.</p></details>
+    <details><summary>연말정산을 하면 금액이 달라지나요?</summary><p>네. 매달 떼는 세금은 미리 내는 금액이고, 연말정산에서 카드 사용액·의료비·교육비·월세 등을 반영해 환급받거나 더 냅니다.</p></details>
+    <details><summary>퇴직금이 연봉에 포함된 경우는요?</summary><p>퇴직금 포함 연봉이라면 연봉을 13으로 나눈 금액이 실제 월급입니다. 이 경우 연봉 칸에 (연봉 ÷ 13 × 12)를 입력하면 됩니다.</p></details>
+  </div>
+</main>
+
+<script type="module">
+const $ = (id) => document.getElementById(id);
+const ids = ["salary", "nontax", "family", "kids"];
+
+function earnedDeduction(g) {
+  let d;
+  if (g <= 5e6) d = g * 0.7;
+  else if (g <= 15e6) d = 3.5e6 + (g - 5e6) * 0.4;
+  else if (g <= 45e6) d = 7.5e6 + (g - 15e6) * 0.15;
+  else if (g <= 1e8) d = 12e6 + (g - 45e6) * 0.05;
+  else d = 14.75e6 + (g - 1e8) * 0.02;
+  return Math.min(d, 20e6);
+}
+function earnedCredit(calc, g) {
+  const c = calc <= 1.3e6 ? calc * 0.55 : 715000 + (calc - 1.3e6) * 0.3;
+  let lim;
+  if (g <= 33e6) lim = 740000;
+  else if (g <= 70e6) lim = Math.max(660000, 740000 - (g - 33e6) * 0.008);
+  else if (g <= 120e6) lim = Math.max(500000, 660000 - (g - 70e6) * 0.5);
+  else lim = Math.max(200000, 500000 - (g - 120e6) * 0.5);
+  return Math.min(c, lim);
+}
+function childCredit(n) {
+  if (n <= 0) return 0;
+  if (n === 1) return 250000;
+  return 550000 + (n - 2) * 400000;
+}
+
+function calc(annual, nontaxM, family, kids) {
+  const monthly = annual / 12;
+  const nontax = Math.min(nontaxM, monthly);
+  const taxable = monthly - nontax;
+  const pBase = Math.floor(Math.min(Math.max(taxable, RATES.pensionMin), RATES.pensionMax) / 1000) * 1000;
+  const pension = taxable > 0 ? floor10(pBase * RATES.pension) : 0;
+  const health = floor10(taxable * RATES.health);
+  const care = floor10(health * RATES.care);
+  const emp = floor10(taxable * RATES.employment);
+
+  const g = taxable * 12;
+  const income = g - earnedDeduction(g);
+  const base = Math.max(0, income - 1.5e6 * Math.max(1, family) - pension * 12 - (health + care + emp) * 12);
+  const computed = progressiveTax(base);
+  const annualTax = Math.max(0, computed - earnedCredit(computed, g) - childCredit(kids));
+  const incomeTax = floor10(annualTax / 12);
+  const local = floor10(incomeTax * 0.1);
+  const deductions = pension + health + care + emp + incomeTax + local;
+  return { monthly, pension, health, care, emp, incomeTax, local, deductions, net: monthly - deductions, base };
+}
+
+const COLORS = ["#2c5cf6", "#7b5cff", "#b26bff", "#18a6b5", "#f08c00", "#e8590c"];
+function render() {
+  const annual = parseNum($("salary").value);
+  const r = calc(annual, parseNum($("nontax").value), parseNum($("family").value) || 1, parseNum($("kids").value));
+  $("net").textContent = won(r.net);
+  $("netSub").textContent = annual ? `월 세전 ${won(r.monthly)} · 연 실수령 약 ${koreanMoney(Math.round(r.net * 12 / 1e4) * 1e4)} · 공제율 ${(r.deductions / r.monthly * 100).toFixed(1)}%` : "";
+  const items = [
+    ["국민연금", r.pension], ["건강보험", r.health], ["장기요양", r.care],
+    ["고용보험", r.emp], ["소득세", r.incomeTax], ["지방소득세", r.local],
+  ];
+  $("breakdown").innerHTML =
+    `<tr><td>월 급여 (세전)</td><td>${won(r.monthly)}</td></tr>` +
+    items.map(([n, v]) => `<tr><td>${n}</td><td class="minus">-${won(v)}</td></tr>`).join("") +
+    `<tr><td>공제 합계</td><td class="minus">-${won(r.deductions)}</td></tr>` +
+    `<tr class="total"><td>실수령액</td><td>${won(r.net)}</td></tr>`;
+  $("bar").innerHTML = r.deductions ? items.map(([, v], i) => `<div style="width:${v / r.deductions * 100}%;background:${COLORS[i]}"></div>`).join("") : "";
+  $("legend").innerHTML = items.map(([n], i) => `<span><b style="background:${COLORS[i]}"></b>${n}</span>`).join("");
+  highlight(annual);
+  writeParams(ids);
+}
+
+const TABLE = [];
+for (let s = 24e6; s <= 60e6; s += 2e6) TABLE.push(s);
+for (let s = 65e6; s <= 100e6; s += 5e6) TABLE.push(s);
+TABLE.push(120e6, 150e6);
+function buildTable() {
+  $("table").innerHTML = `<tr><th>연봉</th><th>월 세전</th><th>공제액</th><th>월 실수령액</th></tr>` +
+    TABLE.map((s) => { const r = calc(s, 200000, 1, 0);
+      return `<tr data-s="${s}"><td>${koreanMoney(s).replace("원", "")}</td><td>${num(r.monthly)}</td><td>${num(r.deductions)}</td><td>${num(r.net)}</td></tr>`; }).join("");
+}
+function highlight(annual) {
+  let best = null;
+  document.querySelectorAll("#table tr[data-s]").forEach((tr) => {
+    tr.classList.remove("hl");
+    if (!best || Math.abs(tr.dataset.s - annual) < Math.abs(best.dataset.s - annual)) best = tr;
+  });
+  if (best && Math.abs(best.dataset.s - annual) < 1.5e6) best.classList.add("hl");
+}
+
+readParams(ids);
+ids.forEach((id) => { const el = $(id); if (id === "salary" || id === "nontax") moneyInput(el); el.addEventListener("input", render); });
+document.querySelectorAll(".chips button").forEach((b) => b.addEventListener("click", () => {
+  const el = $(b.parentElement.dataset.target); el.value = b.dataset.v; el.dispatchEvent(new Event("input"));
+}));
+$("share").addEventListener("click", () => shareResult(`연봉 ${koreanMoney(parseNum($("salary").value))}의 월 실수령액은 ${$("net").textContent}!`));
+buildTable();
+render();
+</script>
+</body>
+</html>
