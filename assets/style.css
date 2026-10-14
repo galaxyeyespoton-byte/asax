@@ -26,7 +26,7 @@ a{color:var(--accent);text-underline-offset:3px}
 .brand svg{width:30px;height:30px}
 .menu{display:flex;gap:2px;align-items:center}
 .menu details{position:relative}
-.menu summary{list-style:none;cursor:pointer;padding:8px 12px;border-radius:12px;font-size:15px;font-weight:600;color:var(--fg);display:flex;align-items:center;gap:4px;white-space:nowrap}
+.menu summary{list-style:none;cursor:pointer;padding:8px 12px;border-radius:12px;font-size:15px;font-weight:700;color:var(--fg);display:flex;align-items:center;gap:4px;white-space:nowrap}
 .menu summary::-webkit-details-marker{display:none}
 .menu summary::after{content:"";width:6px;height:6px;border-right:1.6px solid var(--muted);border-bottom:1.6px solid var(--muted);transform:rotate(45deg) translateY(-2px);margin-left:4px}
 .menu details[open] summary,.menu summary:hover{background:var(--accent-soft)}
@@ -57,11 +57,11 @@ h2{text-wrap:balance}
 .card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:22px;margin-bottom:16px;box-shadow:var(--shadow)}
 .card h2{font-size:18px;margin:0 0 14px}
 .field{margin-bottom:16px;min-width:0}
-.field label{display:block;font-weight:600;font-size:14.5px;margin-bottom:7px}
+.field label{display:block;font-weight:700;font-size:14.5px;margin-bottom:7px}
 .field .hint{font-size:12.5px;color:var(--muted);margin-top:5px;line-height:1.5}
 .input{display:flex;align-items:center;border:1.5px solid var(--line);border-radius:14px;background:var(--bg);padding:0 14px;transition:border-color .15s,background .15s}
 .input:focus-within{border-color:var(--accent);background:var(--card)}
-.input input,.input select{flex:1;min-width:0;width:100%;border:0;background:transparent;color:var(--fg);font:inherit;font-size:18px;font-weight:600;padding:12px 0;outline:none;text-align:right;font-variant-numeric:tabular-nums}
+.input input,.input select{flex:1;min-width:0;width:100%;border:0;background:transparent;color:var(--fg);font:inherit;font-size:18px;font-weight:700;padding:12px 0;outline:none;text-align:right;font-variant-numeric:tabular-nums}
 .input select{text-align:left;font-size:15px;font-weight:500}
 .input span{color:var(--muted);margin-left:8px;font-size:15px;white-space:nowrap}
 .korean{font-size:13px;color:var(--accent);text-align:right;min-height:18px;margin-top:4px}
@@ -76,17 +76,17 @@ h2{text-wrap:balance}
 
 /* 결과 카드: 그라데이션 대신 부드러운 초록 바탕 */
 .result{background:var(--accent-soft);border-color:transparent;box-shadow:none}
-.result .label{color:var(--muted);font-size:14px;font-weight:600}
+.result .label{color:var(--fg);font-size:14px;font-weight:700}
 .result .big{font-size:clamp(32px,8.4vw,42px);font-weight:800;letter-spacing:-.8px;line-height:1.2;margin:4px 0 6px;color:var(--accent);font-variant-numeric:tabular-nums}
 .result .sub{color:var(--fg);opacity:.8;font-size:14px}
 .result .actions{display:flex;gap:8px;margin-top:16px;flex-wrap:wrap}
-.result .actions button{background:var(--card);border:1px solid var(--line);color:var(--fg);padding:8px 14px;border-radius:999px;font:inherit;font-size:14px;font-weight:600;cursor:pointer;display:inline-flex;align-items:center;gap:6px}
+.result .actions button{background:var(--card);border:1px solid var(--line);color:var(--fg);padding:8px 14px;border-radius:999px;font:inherit;font-size:14px;font-weight:700;cursor:pointer;display:inline-flex;align-items:center;gap:6px}
 .result .actions button:hover{border-color:var(--accent)}
 .result .actions .icon{width:17px;height:17px}
 
 .breakdown{width:100%;border-collapse:collapse;font-size:15px}
 .breakdown td{padding:10px 0;border-bottom:1px dashed var(--line)}
-.breakdown td:last-child{text-align:right;font-weight:600;font-variant-numeric:tabular-nums}
+.breakdown td:last-child{text-align:right;font-weight:700;font-variant-numeric:tabular-nums}
 .breakdown tr.total td{border-bottom:0;font-weight:800;font-size:16px;padding-top:14px}
 .breakdown .minus{color:var(--warn)}
 .breakdown .plus{color:var(--good)}
@@ -95,7 +95,7 @@ h2{text-wrap:balance}
 .legend{display:flex;flex-wrap:wrap;gap:6px 14px;font-size:12px;color:var(--muted);margin-bottom:6px}
 .legend b{display:inline-block;width:10px;height:10px;border-radius:3px;margin-right:4px;vertical-align:-1px}
 .note{font-size:13px;color:var(--muted);line-height:1.6}
-.warn{color:var(--warn);font-weight:600}
+.warn{color:var(--warn);font-weight:700}
 .tip{background:var(--sun);color:var(--fg);border-radius:14px;padding:14px 16px;font-size:14px;margin-top:16px;line-height:1.7}
 .tip strong.tip-title{display:block;color:var(--sun-ink);font-size:13px;margin-bottom:4px}
 
@@ -103,7 +103,7 @@ h2{text-wrap:balance}
 table.data{width:100%;border-collapse:collapse;font-size:14px;font-variant-numeric:tabular-nums}
 table.data th,table.data td{padding:9px 8px;border-bottom:1px solid var(--line);text-align:right;white-space:nowrap}
 table.data th:first-child,table.data td:first-child{text-align:left}
-table.data th{color:var(--muted);font-weight:600;font-size:13px}
+table.data th{color:var(--muted);font-weight:700;font-size:13px}
 table.data tr.hl td{background:var(--accent-soft);font-weight:700}
 .content h2{font-size:19px;margin:6px 0 12px}
 .content h3{font-size:16px;margin:22px 0 6px}
@@ -168,7 +168,7 @@ footer .brandline{font-family:var(--font-head);font-size:16px;color:var(--fg)}
 
 /* 앱으로 열었을 때: 아래 탭바 */
 .appbar{position:fixed;left:0;right:0;bottom:0;z-index:25;display:flex;background:var(--card);border-top:1px solid var(--line);padding:6px max(8px,env(safe-area-inset-right,0px)) calc(6px + env(safe-area-inset-bottom,0px)) max(8px,env(safe-area-inset-left,0px))}
-.appbar a,.appbar button{flex:1;display:flex;flex-direction:column;align-items:center;gap:2px;padding:6px 0;color:var(--muted);text-decoration:none;font:inherit;font-size:11.5px;font-weight:600;background:none;border:0;cursor:pointer;border-radius:12px}
+.appbar a,.appbar button{flex:1;display:flex;flex-direction:column;align-items:center;gap:2px;padding:6px 0;color:var(--muted);text-decoration:none;font:inherit;font-size:11.5px;font-weight:700;background:none;border:0;cursor:pointer;border-radius:12px}
 .appbar a.on{color:var(--accent)}
 .appbar .icon{width:23px;height:23px}
 .is-app body{padding-bottom:calc(72px + env(safe-area-inset-bottom,0px))}
