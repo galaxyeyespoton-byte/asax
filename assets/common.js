@@ -102,6 +102,8 @@ async function shareResult(text) {
 // ── 운영 정보 ───────────────────────────────────────────────
 // 문의·제휴 메일. 비워두면 문의 페이지에 "준비 중"으로 표시됩니다.
 const CONTACT_EMAIL = "";
+// 운영 블로그 (네이버)
+const BLOG_URL = "https://blog.naver.com/galaxy134";
 
 // ── 메뉴 (그룹별) ────────────────────────────────────────────
 const MENU = [
@@ -120,6 +122,7 @@ const MENU = [
   ]},
   { title: "도움말", items: [
     ["about.html", "만든 이야기", "이 사이트를 만든 이유와 업데이트 기록", "leaf"],
+    [BLOG_URL, "운영 블로그", "세금·월급 이야기를 더 자세히", "pen"],
     ["app.html", "앱으로 설치", "홈 화면에 앱처럼 두고 쓰기", "phone"],
     ["contact.html", "문의·제휴", "틀린 곳 제보, 제휴 제안", "mail"],
   ]},
@@ -141,6 +144,7 @@ const ICONS = {
   share: '<circle cx="17" cy="6" r="2.3"/><circle cx="7" cy="12" r="2.3"/><circle cx="17" cy="18" r="2.3"/><path d="M9 11l6-3.5M9 13l6 3.5"/>',
   copy: '<rect x="8" y="8" width="11" height="11" rx="2.2"/><path d="M5 15V6.5A1.5 1.5 0 0 1 6.5 5H15"/>',
   menu: '<path d="M4.5 7h15M4.5 12h15M4.5 17h15"/>',
+  pen: '<path d="M5 19l1-4L16 5l3 3L9 18z"/><path d="M14 7l3 3"/>',
   phone: '<rect x="7" y="3" width="10" height="18" rx="2.5"/><path d="M11 17.5h2"/>',
   home: '<path d="M4.5 11L12 4.5l7.5 6.5"/><path d="M6.5 9.5V19h11V9.5"/>',
   grid: '<rect x="4.5" y="4.5" width="6" height="6" rx="1.5"/><rect x="13.5" y="4.5" width="6" height="6" rx="1.5"/><rect x="4.5" y="13.5" width="6" height="6" rx="1.5"/><rect x="13.5" y="13.5" width="6" height="6" rx="1.5"/>',
@@ -188,7 +192,7 @@ function renderDeadlines(el, count) {
 function renderChrome() {
   const here = location.pathname.split("/").pop() || "index.html";
   const links = (items) => items.map(([h, t, d, ic]) =>
-    `<a href="${h}" class="${h === here ? "on" : ""}">${icon(ic)}<span>${t}<small>${d}</small></span></a>`).join("");
+    `<a href="${h}" class="${h === here ? "on" : ""}"${h.startsWith("http") ? ' target="_blank" rel="noopener"' : ""}>${icon(ic)}<span>${t}<small>${d}</small></span></a>`).join("");
   const desktop = MENU.map((g) =>
     `<details class="menu-desktop${g.items.some(([h]) => h === here) ? " here" : ""}"><summary>${g.title}</summary><div class="pop">${links(g.items)}</div></details>`).join("");
   const mobile = `<details class="menu-mobile"><summary aria-label="메뉴 열기">${icon("menu")}</summary><div class="pop">${
@@ -212,7 +216,7 @@ function renderChrome() {
   foot.innerHTML = `<div class="wrap">
     <div class="brandline">세금 도우미</div>
     <div>숫자만 넣으면 세금이 보이는 작은 계산기 모음입니다. ${RATES.year}년 기준 요율로 계산한 추정치라, 실제 금액은 회사나 개인 상황에 따라 조금 다를 수 있어요.</div>
-    <nav><a href="app.html">앱 설치</a><a href="about.html">만든 이야기</a><a href="contact.html">문의·제휴</a><a href="terms.html">이용약관</a><a href="privacy.html">개인정보처리방침</a></nav>
+    <nav><a href="${BLOG_URL}" target="_blank" rel="noopener">운영 블로그</a><a href="app.html">앱 설치</a><a href="about.html">만든 이야기</a><a href="contact.html">문의·제휴</a><a href="terms.html">이용약관</a><a href="privacy.html">개인정보처리방침</a></nav>
     <div>© ${new Date().getFullYear()} 세금 도우미</div></div>`;
   document.body.appendChild(foot);
 
@@ -264,6 +268,16 @@ function renderAppBar() {
   document.body.appendChild(bar);
 }
 
+// 각 페이지 맨 아래: 블로그로 이어지는 한 줄
+function renderBlogLink() {
+  const main = document.querySelector("main");
+  if (!main || !BLOG_URL || IS_APP) return;
+  const box = document.createElement("p");
+  box.className = "note blog-link";
+  box.innerHTML = `${icon("pen")}<span>신고 시즌마다 챙길 것, 바뀐 제도 이야기는 <a href="${BLOG_URL}" target="_blank" rel="noopener">세금 도우미 블로그</a>에 더 자세히 적고 있어요.</span>`;
+  main.appendChild(box);
+}
+
 // ── 제휴 영역 ───────────────────────────────────────────────
 // <section class="partners" data-slot="business"></section> 자리에, assets/partners.js에서
 // 링크(url)가 채워진 항목만 보여줍니다. 링크가 하나도 없으면 영역 자체가 숨겨집니다.
@@ -293,6 +307,7 @@ function renderAds() {
 document.addEventListener("DOMContentLoaded", () => {
   renderChrome();
   renderAppBar();
+  renderBlogLink();
   fillIcons();
   updateInstallButtons();
   document.querySelectorAll("[data-install]").forEach((el) => el.addEventListener("click", installApp));

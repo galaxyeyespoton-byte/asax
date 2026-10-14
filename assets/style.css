@@ -183,3 +183,4 @@ footer .brandline{font-family:var(--font-head);font-size:16px;color:var(--fg)}
 .steps{counter-reset:step;list-style:none;padding:0;margin:0}
 .steps li{counter-increment:step;position:relative;padding:0 0 14px 40px}
 .steps li::before{content:counter(step);position:absolute;left:0;top:0;width:28px;height:28px;border-radius:50%;background:var(--accent-soft);color:var(--accent);font-weight:800;display:flex;align-items:center;justify-content:center;font-size:14px}
+.blog-link{display:flex;gap:10px;align-items:flex-start;margin:22px 0 0}.blog-link .icon{color:var(--accent);width:20px;height:20px;margin-top:2px}
