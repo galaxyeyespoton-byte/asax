@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>하루 완성 홈페이지 | 동네 가게 홈페이지 제작</title>
+<meta name="description" content="카페·학원·미용실·공방 홈페이지를 하루 만에. 모바일 최적화, 네이버 지도·카카오톡 문의 연결까지 한 번에.">
+<meta property="og:title" content="하루 완성 홈페이지">
+<meta property="og:description" content="동네 가게 홈페이지, 하루 만에 완성해 드립니다.">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&display=swap" rel="stylesheet">
+<style>
+  :root{--bg:#fff;--fg:#14161a;--muted:#5b6170;--line:#e6e8ee;--soft:#f5f7fb;--accent:#2f5bff;--accent-fg:#fff}
+  @media (prefers-color-scheme:dark){:root{--bg:#0f1115;--fg:#eef0f4;--muted:#9aa1b2;--line:#262a33;--soft:#171a21;--accent:#5b7dff}}
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--fg);font-family:"Noto Sans KR",system-ui,sans-serif;line-height:1.6;word-break:keep-all}
+  .wrap{max-width:1040px;margin:0 auto;padding:0 20px}
+  header{position:sticky;top:0;background:color-mix(in srgb,var(--bg) 90%,transparent);backdrop-filter:blur(8px);border-bottom:1px solid var(--line);z-index:10}
+  header .wrap{display:flex;justify-content:space-between;align-items:center;height:60px}
+  .logo{font-weight:900;font-size:18px}
+  .btn{display:inline-block;background:var(--accent);color:var(--accent-fg);padding:12px 22px;border-radius:10px;font-weight:700;text-decoration:none}
+  .btn.ghost{background:transparent;color:var(--fg);border:1px solid var(--line)}
+  .btn.sm{padding:8px 14px;font-size:14px}
+  .hero{padding:80px 0 64px}
+  .hero h1{font-size:clamp(32px,6vw,54px);line-height:1.2;margin:0 0 16px;font-weight:900}
+  .hero h1 em{font-style:normal;color:var(--accent)}
+  .hero p{font-size:18px;color:var(--muted);margin:0 0 28px;max-width:600px}
+  .hero .ctas{display:flex;gap:10px;flex-wrap:wrap}
+  .chips{display:flex;gap:8px;flex-wrap:wrap;margin-top:28px}
+  .chip{border:1px solid var(--line);border-radius:999px;padding:6px 14px;font-size:14px;color:var(--muted)}
+  section{padding:64px 0;border-top:1px solid var(--line)}
+  h2{font-size:28px;margin:0 0 8px}
+  .sub{color:var(--muted);margin:0 0 32px}
+  .grid{display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(240px,1fr))}
+  .card{border:1px solid var(--line);border-radius:16px;padding:24px;background:var(--bg)}
+  .card h3{margin:0 0 6px;font-size:18px}
+  .card p{margin:0;color:var(--muted);font-size:15px}
+  .num{font-weight:900;color:var(--accent);font-size:14px;margin-bottom:8px}
+  .samples a{display:block;text-decoration:none;color:inherit;border:1px solid var(--line);border-radius:16px;overflow:hidden;transition:transform .15s}
+  .samples a:hover{transform:translateY(-3px)}
+  .thumb{height:150px;display:flex;align-items:center;justify-content:center;font-size:44px}
+  .samples .meta{padding:16px 20px}
+  .samples .meta b{display:block}
+  .samples .meta span{color:var(--muted);font-size:14px}
+  .price{position:relative}
+  .price.best{border:2px solid var(--accent)}
+  .badge{position:absolute;top:-12px;left:20px;background:var(--accent);color:#fff;font-size:12px;font-weight:700;padding:3px 10px;border-radius:999px}
+  .amount{font-size:30px;font-weight:900;margin:8px 0 4px}
+  .amount small{font-size:15px;font-weight:500;color:var(--muted)}
+  .price ul{padding-left:18px;margin:14px 0 20px;color:var(--muted);font-size:15px}
+  .price .btn{width:100%;text-align:center}
+  details{border:1px solid var(--line);border-radius:12px;padding:16px 20px;margin-bottom:10px}
+  summary{font-weight:700;cursor:pointer}
+  details p{color:var(--muted);margin:10px 0 0}
+  .final{background:var(--soft);text-align:center}
+  footer{padding:32px 0;color:var(--muted);font-size:14px;text-align:center}
+  .floating{position:fixed;right:16px;bottom:16px;z-index:20;box-shadow:0 8px 24px rgba(0,0,0,.18)}
+</style>
+</head>
+<body>
+<header><div class="wrap">
+  <div class="logo">하루 완성 홈페이지</div>
+  <a class="btn sm js-order" href="#">상담하기</a>
+</div></header>
+
+<main>
+<div class="wrap hero">
+  <h1>우리 가게 홈페이지,<br><em>하루 만에</em> 완성해 드립니다</h1>
+  <p>카페·학원·미용실·공방·식당. 메뉴판, 가격표, 위치 안내, 카카오톡 문의 버튼까지. 휴대폰에서 바로 보기 좋은 홈페이지를 빠르게 만들어 드립니다.</p>
+  <div class="ctas">
+    <a class="btn js-order" href="#">크몽에서 상담하기</a>
+    <a class="btn ghost" href="#samples">샘플 사이트 보기</a>
+  </div>
+  <div class="chips">
+    <span class="chip">📱 모바일 최적화</span><span class="chip">🗺 네이버/카카오 지도 연결</span>
+    <span class="chip">💬 카톡·전화 문의 버튼</span><span class="chip">🔍 검색 노출 기본 세팅</span>
+    <span class="chip">💸 월 유지비 0원 호스팅 가능</span>
+  </div>
+</div>
+
+<section id="samples"><div class="wrap">
+  <h2>샘플 사이트</h2>
+  <p class="sub">실제로 이 정도 결과물을 받으실 수 있습니다. 눌러서 직접 확인해 보세요. (예시용 가상 매장)</p>
+  <div class="grid samples">
+    <a href="samples/cafe.html"><div class="thumb" style="background:#efe6da">☕</div><div class="meta"><b>카페</b><span>메뉴판 · 영업시간 · 오시는 길</span></div></a>
+    <a href="samples/academy.html"><div class="thumb" style="background:#dfe8ff">📚</div><div class="meta"><b>학원</b><span>커리큘럼 · 시간표 · 상담 신청</span></div></a>
+    <a href="samples/salon.html"><div class="thumb" style="background:#f5dfe6">✂️</div><div class="meta"><b>미용실</b><span>가격표 · 스타일 갤러리 · 예약</span></div></a>
+  </div>
+</div></section>
+
+<section><div class="wrap">
+  <h2>진행 과정</h2>
+  <p class="sub">자료만 보내주시면 나머지는 제가 다 합니다.</p>
+  <div class="grid">
+    <div class="card"><div class="num">STEP 1</div><h3>상담 (10분)</h3><p>업종, 원하는 분위기, 넣을 내용을 알려주세요.</p></div>
+    <div class="card"><div class="num">STEP 2</div><h3>자료 전달</h3><p>가게 사진, 메뉴/가격, 주소, 연락처. 없으면 문구는 제가 써드려요.</p></div>
+    <div class="card"><div class="num">STEP 3</div><h3>시안 확인</h3><p>당일 시안을 링크로 보내드리고 수정 요청을 받습니다.</p></div>
+    <div class="card"><div class="num">STEP 4</div><h3>오픈</h3><p>인터넷 주소 연결, 네이버 플레이스·인스타 링크 등록까지 도와드립니다.</p></div>
+  </div>
+</div></section>
+
+<section id="pricing"><div class="wrap">
+  <h2>가격</h2>
+  <p class="sub">추가 비용 없이 표시된 금액이 전부입니다. (도메인 구입비 별도, 연 1~2만원)</p>
+  <div class="grid">
+    <div class="card price"><h3>베이직</h3><div class="amount">150,000<small>원</small></div><p>소개만 필요한 가게</p>
+      <ul><li>원페이지 (스크롤형)</li><li>소개·메뉴/가격·위치·연락처</li><li>모바일 최적화</li><li>수정 1회</li><li>1일 작업</li></ul>
+      <a class="btn ghost js-order" href="#">선택</a></div>
+    <div class="card price best"><span class="badge">가장 많이 선택</span><h3>스탠다드</h3><div class="amount">300,000<small>원</small></div><p>문의·예약을 받고 싶은 가게</p>
+      <ul><li>베이직 전체 포함</li><li>최대 4개 섹션 추가 (갤러리·후기·FAQ 등)</li><li>카톡/전화/문의 폼 연결</li><li>도메인 연결 + 검색 노출 세팅</li><li>수정 3회 · 1~2일 작업</li></ul>
+      <a class="btn js-order" href="#">선택</a></div>
+    <div class="card price"><h3>프리미엄</h3><div class="amount">500,000<small>원</small></div><p>제대로 브랜딩하고 싶은 가게</p>
+      <ul><li>스탠다드 전체 포함</li><li>최대 5페이지 구성</li><li>홍보 문구 전체 작성</li><li>네이버 서치어드바이저·구글 등록</li><li>수정 무제한 (7일) · 2~3일 작업</li></ul>
+      <a class="btn ghost js-order" href="#">선택</a></div>
+  </div>
+</div></section>
+
+<section><div class="wrap">
+  <h2>자주 묻는 질문</h2>
+  <details><summary>매달 내는 돈이 있나요?</summary><p>기본 호스팅은 무료 서비스(GitHub Pages, Netlify 등)를 써서 월 유지비가 없습니다. 원하시는 인터넷 주소(.com, .kr)를 쓰려면 도메인 비용만 연 1~2만원 정도 듭니다.</p></details>
+  <details><summary>사진이나 글이 하나도 없는데 가능한가요?</summary><p>네. 소개 문구는 제가 써드리고, 사진은 휴대폰으로 찍어 보내주시면 됩니다. 정리해서 넣어드립니다.</p></details>
+  <details><summary>나중에 내용을 바꾸고 싶으면요?</summary><p>오픈 후 7일 동안은 간단한 수정을 무료로 해드리고, 이후에는 건당 소액으로 수정해 드립니다.</p></details>
+  <details><summary>정말 하루 만에 되나요?</summary><p>베이직은 자료를 받은 날 시안을 보내드립니다. 스탠다드·프리미엄은 수정 횟수에 따라 1~3일 걸립니다.</p></details>
+</div></section>
+
+<section class="final"><div class="wrap">
+  <h2>이번 주 안에 우리 가게 홈페이지 열기</h2>
+  <p class="sub">상담은 무료입니다. 원하시는 내용만 말씀해 주세요.</p>
+  <a class="btn js-order" href="#">크몽에서 상담하기</a>
+</div></section>
+</main>
+
+<footer>© 하루 완성 홈페이지</footer>
+<a class="btn floating js-order" href="#">💬 상담하기</a>
+
+<script>
+  // ▼ 본인 크몽 서비스 주소로 바꾸세요 (예: https://kmong.com/gig/123456)
+  const ORDER_URL = "https://kmong.com/";
+  document.querySelectorAll(".js-order").forEach(a => { a.href = ORDER_URL; a.target = "_blank"; a.rel = "noopener"; });
+</script>
+</body>
+</html>
