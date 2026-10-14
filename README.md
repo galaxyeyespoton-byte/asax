@@ -11,6 +11,18 @@
 2. Source: `Deploy from a branch`, Branch: `claude/100won-monetization-project-pt8p14` (병합 후에는 `main`), Folder: `/ (root)` → Save
 3. 1~2분 뒤 https://galaxyeyespoton-byte.github.io/asax/ 에서 열립니다.
 
+### 도메인 연결
+가비아 등에서 산 도메인의 DNS를 GitHub Pages로 연결한 뒤 아래 한 줄을 실행하면, 모든 주소·CNAME·sitemap이 바뀝니다.
+```
+tools/set-domain.sh 내도메인.kr
+```
+
+### 연봉별 페이지
+`salary-XXXX.html`(31개)과 `sitemap.xml`은 `node tools/gen-salary-pages.mjs`로 만듭니다. 요율을 바꾼 뒤 다시 실행하세요.
+
+### 홍보
+방문자를 늘리는 방법(검색 등록, 시즌 전략, 커뮤니티 문구, 블로그 초안)은 `marketing/PROMOTION.md`에 있습니다.
+
 이전에 만든 홈페이지 제작 외주 키트는 `kmong-kit/` 폴더로 옮겼습니다.
 
 ## 광고 (Google AdSense)
