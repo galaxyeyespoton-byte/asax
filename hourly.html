@@ -41,6 +41,7 @@
     <div class="field">
       <label for="wage">시급</label>
       <div class="input"><input id="wage" inputmode="numeric" value="10,320"><span>원</span></div>
+      <div class="chips" id="wageChips"><button type="button" data-v="10320">2026년 최저 10,320원</button><button type="button" data-v="10700">2027년 최저 10,700원</button></div>
       <div class="hint" id="wageWarn"></div>
     </div>
     <div class="row2">
@@ -81,6 +82,8 @@
     <p><b>주휴수당 = (주 근무시간 ÷ 40) × 8 × 시급</b><br>주 40시간 이상 일해도 최대 8시간분까지만 인정됩니다.</p>
     <h3>월급 환산</h3>
     <p>한 달은 평균 약 4.345주(365 ÷ 12 ÷ 7)입니다. 주 40시간 근무자는 주휴 8시간을 더해 <b>월 209시간</b>으로 계산하며, 2026년 최저 월급은 <b>2,156,880원</b>입니다.</p>
+    <h3>2027년 최저시급은 10,700원</h3>
+    <p>2027년 1월 1일부터 최저시급은 <b>10,700원</b>으로 올해보다 380원(3.7%) 오릅니다. 주 40시간이면 월 <b>2,236,300원</b>이에요. 위 시급 칸에 10,700을 넣으면 내년 기준으로 바로 계산돼요.</p>
     <h3>자주 묻는 질문</h3>
     <details><summary>알바도 주휴수당을 받을 수 있나요?</summary><p>네. 정규직·알바 구분 없이 주 15시간 이상, 소정근로일을 개근하면 받을 수 있습니다. 상시 4인 이하 사업장에도 주휴수당은 적용됩니다.</p></details>
     <details><summary>주휴수당을 안 주면 어떻게 하나요?</summary><p>임금체불에 해당합니다. 고용노동부 민원마당이나 고객상담센터(1350)에 진정할 수 있습니다.</p></details>
@@ -123,6 +126,7 @@ function render() {
 }
 readParams(ids);
 moneyInput($("wage"));
+document.querySelectorAll("#wageChips button").forEach((b) => b.addEventListener("click", () => { $("wage").value = b.dataset.v; $("wage").dispatchEvent(new Event("input")); }))
 ids.forEach((id) => $(id).addEventListener("input", render));
 $("share").addEventListener("click", () => shareResult(`시급 ${$("wage").value}원이면 월급 ${$("month").textContent}`));
 render();

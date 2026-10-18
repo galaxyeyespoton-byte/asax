@@ -164,7 +164,7 @@ const TAX_SCHEDULE = [
   { m: 4, d: 25, name: "부가세 예정고지 납부", who: "일반과세 개인사업자 (고지서 금액 납부)" },
   { m: 5, d: 31, name: "종합소득세 신고·납부", who: "모든 개인사업자·프리랜서 (성실신고확인대상은 6월 30일)" },
   { m: 7, d: 25, name: "부가세 확정신고", who: "일반과세자 (1~6월분)" },
-  { m: 10, d: 25, name: "부가세 예정고지 납부", who: "일반과세 개인사업자 (고지서 금액 납부)" },
+  { m: 10, d: 25, name: "부가세 예정고지 납부", who: "일반과세 개인사업자 (고지서 금액 납부)", byYear: { 2026: [11, 2] } },
   { m: 11, d: 30, name: "종합소득세 중간예납", who: "개인사업자 (고지서 금액 납부)" },
 ];
 function shiftWeekend(dt) {
@@ -178,7 +178,9 @@ function upcomingDeadlines(count = 3, from = new Date()) {
   const list = [];
   for (const y of [today.getFullYear(), today.getFullYear() + 1])
     for (const t of TAX_SCHEDULE) {
-      const due = shiftWeekend(new Date(y, t.m - 1, t.d));
+      // 해마다 국세청이 정한 기한이 다르면 byYear로 덮어씀 (예: 2026년 2기 예정고지는 11월 2일)
+      const [mm, dd] = (t.byYear && t.byYear[y]) || [t.m, t.d];
+      const due = shiftWeekend(new Date(y, mm - 1, dd));
       if (due >= today) list.push({ ...t, due, dday: Math.round((due - today) / 86400000) });
     }
   return list.sort((a, b) => a.due - b.due).slice(0, count);
