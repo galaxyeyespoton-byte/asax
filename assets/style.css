@@ -20,7 +20,9 @@ a{color:var(--accent);text-underline-offset:3px}
 .icon{width:22px;height:22px;flex:none;stroke:currentColor;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
 
 /* ── 헤더 + 메뉴 ─────────────────────────── */
-.top{background:color-mix(in srgb,var(--bg) 88%,transparent);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid var(--line);position:sticky;top:env(safe-area-inset-top,0px);z-index:20}
+.top{background:color-mix(in srgb,var(--bg) 88%,transparent);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid var(--line);position:fixed;left:0;right:0;top:env(safe-area-inset-top,0px);z-index:20}
+/* 메뉴가 스크립트로 붙기 전에 자리를 미리 비워 화면이 밀리지 않게 */
+body{padding-top:61px}
 .top .wrap{display:flex;align-items:center;gap:8px;height:60px}
 .brand{font-family:var(--font-head);font-size:21px;color:var(--fg);text-decoration:none;display:flex;align-items:center;gap:9px;margin-right:auto;white-space:nowrap}
 .brand svg{width:30px;height:30px}
